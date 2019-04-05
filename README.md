@@ -19,3 +19,8 @@ cd backend && mvn clean install
    cd backend && mvn spring-boot:run
    ```
 2. open [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+
+### build and run frontend
+```
+cd frontend && npm install && ionic serve
+```
