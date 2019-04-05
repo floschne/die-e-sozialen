@@ -5,8 +5,9 @@ Smart City Hackathon Hamburg 2019 - [https://hackathon.cadeia.org](https://hacka
 
 ### install prerequisites for ubuntu 18.04 LTS
 ```
-sudo apt install nodejs npm maven
+sudo apt install nodejs npm maven redis-server
 sudo npm install -g ionic 
+sudo service redis-server start
 ```
 
 ### build backend
