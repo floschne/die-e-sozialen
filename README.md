@@ -1,8 +1,6 @@
 # SCHHH19
 Smart City Hackathon Hamburg 2019 - [https://hackathon.cadeia.org](https://hackathon.cadeia.org/)
 
-
-
 ## How to
 
 ### push your commits
@@ -22,3 +20,9 @@ cd backend && mvn clean install
    cd backend && mvn spring-boot:run
    ```
 2. open [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+
+### build and run frontend
+```
+cd frontend && npm install && ionic serve
+```
+>>>>>>> 2c528459faaaf25fa05cf34f27ebbe9c835a6a21
