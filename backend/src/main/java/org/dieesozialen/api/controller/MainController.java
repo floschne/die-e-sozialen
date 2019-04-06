@@ -6,6 +6,8 @@ import org.dieesozialen.api.respones.PlainStringResponse;
 import org.dieesozialen.db.repos.QuoteRepo;
 import org.dieesozialen.entity.Quote;
 import org.dieesozialen.service.QuoteApi;
+import org.dieesozialen.entity.MapInformation;
+import org.dieesozialen.service.MapApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +23,13 @@ public class MainController {
 
     private final QuoteApi quoteApi;
     private final QuoteRepo quoteRepo;
+    private final MapApi mapApi;
 
     @Autowired
-    public MainController(QuoteApi quoteApi, QuoteRepo quoteRepo) {
+    public MainController(QuoteApi quoteApi, QuoteRepo quoteRepo, MapApi mapApi) {
         this.quoteApi = quoteApi;
         this.quoteRepo = quoteRepo;
+        this.mapApi = mapApi;
     }
 
     /**
@@ -71,5 +75,12 @@ public class MainController {
         this.quoteRepo.deleteAll();
     }
 
-
+    /**
+     * @return Coordinates of a card type
+     */
+    @RequestMapping(value = "/getMapContent", method = RequestMethod.GET, produces = "application/json")
+    public List<MapInformation> getMapContent(@RequestParam("type") String paramType) {
+        List<MapInformation> info = this.mapApi.getMapInformation(paramType);
+        return info;
+    }
 }
