@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NeuigkeitenPage } from '../pages/neuigkeiten/neuigkeiten';
+import { NeuigkeitenPage, ModalContentPage } from '../pages/neuigkeiten/neuigkeiten';
 import { InformationenPage } from '../pages/informationen/informationen';
 import { KartePage } from '../pages/karte/karte';
 import { ResourcesProvider } from '../providers/resources/resources';
@@ -18,7 +18,8 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
     TabsPage,
     NeuigkeitenPage,
     InformationenPage,
-    KartePage
+    KartePage,
+    ModalContentPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
     TabsPage,
     NeuigkeitenPage,
     KartePage,
-    InformationenPage
+    InformationenPage,
+    ModalContentPage
   ],
   providers: [
     StatusBar,

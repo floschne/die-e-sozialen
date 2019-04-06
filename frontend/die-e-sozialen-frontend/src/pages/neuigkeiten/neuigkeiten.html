@@ -10,6 +10,22 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
+
+  <ion-list>
+    <ion-list-header>
+      <h1>Messages</h1>
+    </ion-list-header>
+    <a ion-item (click)="openModal({charNum: 0})">
+      Test Message0
+    </a>
+    <a ion-item (click)="openModal({charNum: 1})">
+      Test Message1
+    </a>
+    <a ion-item (click)="openModal({charNum: 2})">
+      Test Message2
+    </a>
+  </ion-list>
 
 </ion-content>
