@@ -2,15 +2,16 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
 import { TabsPage } from '../pages/tabs/tabs';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NeuigkeitenPage } from '../pages/neuigkeiten/neuigkeiten';
+import { NeuigkeitenPage, ModalContentPage } from '../pages/neuigkeiten/neuigkeiten';
 import { InformationenPage } from '../pages/informationen/informationen';
 import { KartePage } from '../pages/karte/karte';
-import { L } from '@angular/core/src/render3';
+import { ResourcesProvider } from '../providers/resources/resources';
+import { HttpClientModule } from '@angular/common/http';
+import { FileEncryption } from '@ionic-native/file-encryption/ngx';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,13 @@ import { L } from '@angular/core/src/render3';
     TabsPage,
     NeuigkeitenPage,
     InformationenPage,
-    KartePage
+    KartePage,
+    ModalContentPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,12 +33,16 @@ import { L } from '@angular/core/src/render3';
     TabsPage,
     NeuigkeitenPage,
     KartePage,
-    InformationenPage
+    InformationenPage,
+    ModalContentPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ResourcesProvider,
+    FileEncryption,
+    AuthProvider
   ]
 })
 export class AppModule {}
