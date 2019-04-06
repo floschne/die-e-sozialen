@@ -10,6 +10,13 @@ Smart City Hackathon Hamburg 2019 - [https://hackathon.cadeia.org](https://hacka
 4. wait for review or travis
 5. when everything is ok: merge!
 
+### install prerequisites for ubuntu 18.04 LTS
+```
+sudo apt install nodejs npm maven redis-server
+sudo npm install -g ionic 
+sudo service redis-server start
+```
+
 ### build backend
 ```
 cd backend && mvn clean install
@@ -25,4 +32,3 @@ cd backend && mvn clean install
 ```
 cd frontend && npm install && ionic serve
 ```
->>>>>>> 2c528459faaaf25fa05cf34f27ebbe9c835a6a21
