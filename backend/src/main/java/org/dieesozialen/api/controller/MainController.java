@@ -4,8 +4,10 @@ package org.dieesozialen.api.controller;
 import io.swagger.annotations.Api;
 import org.dieesozialen.api.respones.PlainStringResponse;
 import org.dieesozialen.db.repos.QuoteRepo;
+import org.dieesozialen.entity.Authority;
 import org.dieesozialen.entity.Message;
 import org.dieesozialen.entity.Quote;
+import org.dieesozialen.service.AuthorityService;
 import org.dieesozialen.service.GMailService;
 import org.dieesozialen.service.QuoteApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +27,14 @@ public class MainController {
     private final QuoteApi quoteApi;
     private final QuoteRepo quoteRepo;
     private final GMailService gMailService;
+    private final AuthorityService authorityService;
 
     @Autowired
-    public MainController(QuoteApi quoteApi, QuoteRepo quoteRepo, GMailService gMailService) {
+    public MainController(QuoteApi quoteApi, QuoteRepo quoteRepo, GMailService gMailService, AuthorityService authorityService) {
         this.quoteApi = quoteApi;
         this.quoteRepo = quoteRepo;
         this.gMailService = gMailService;
+        this.authorityService = authorityService;
     }
 
     /**
@@ -82,4 +86,8 @@ public class MainController {
         return this.gMailService.getMessages();
     }
 
+    @RequestMapping(value = "/getAuthorities", method = RequestMethod.GET)
+    public List<Authority> getAuthorities() {
+        return this.authorityService.getAuthorities();
+    }
 }
