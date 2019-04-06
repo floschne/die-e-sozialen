@@ -11,6 +11,7 @@
 </ion-header>
 
 <ion-content padding *ngIf="!loggedIn">
+  <h2>Geschützter Bereich</h2>
     <form #form="ngForm" (ngSubmit)="login(form.value)">
         <div padding>
           <ion-item>

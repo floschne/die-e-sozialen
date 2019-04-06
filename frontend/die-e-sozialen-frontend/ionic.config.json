@@ -4,6 +4,16 @@
     "cordova": {}
   },
   "type": "ionic-angular",
+  "assets": [
+    {
+      "glob": "**/*",
+      "input": "./node_modules/leaflet/dist/images",
+      "output": "leaflet/"
+    }
+  ],
+  "styles": [
+    "./node_modules/leaflet/dist/leaflet.css"
+  ],
   "proxies": [
     {
       "path": "/helloWorld",
@@ -15,3 +25,7 @@
     }
   ]
 }
+
+
+
+
