@@ -17,27 +17,22 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
   templateUrl: 'neuigkeiten.html'
 })
 export class NeuigkeitenPage {
-<<<<<<< HEAD
 
-  constructor(private fileEncryption: FileEncryption, public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
+  constructor(private fileEncryption: FileEncryption, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public httpClient: HttpClient,
+    public modalCtrl: ModalController,) {
     this.fileEncryption.encrypt('assets/json/topSecret.json', 'secretKey').then((res) => {
       console.log(res);
     });
   }
-=======
-  constructor(public navCtrl: NavController, 
-        public navParams: NavParams, 
-        public modalCtrl: ModalController, 
-        public HttpClient: HttpClient) {
-      }
->>>>>>> e6b7c65fe962c360fb74920c340321912833a0c3
 
   ionViewDidLoad() {
     var resources = new ResourcesProvider(this.HttpClient);
     resources.getHelloWorld().subscribe(data => console.log(data));
+  }
 
-<<<<<<< HEAD
-=======
   openModal(characterNum) {
 
     let modal = this.modalCtrl.create(ModalContentPage, characterNum);
@@ -79,6 +74,5 @@ export class ModalContentPage {
 
   dismiss() {
     this.viewCtrl.dismiss();
->>>>>>> e6b7c65fe962c360fb74920c340321912833a0c3
   }
 }
