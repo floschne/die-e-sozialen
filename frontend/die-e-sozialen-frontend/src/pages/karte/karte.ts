@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { Map, latLng, tileLayer, Layer, Marker, Icon, Circle, Polygon } from 'leaflet';
+import { Map, latLng, tileLayer, Layer, Marker, Icon, Circle, Polygon, LatLng } from 'leaflet';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 
@@ -89,6 +89,10 @@ export class KartePage {
     if (this.form[0].isChecked) {
       resources.getMapContent("hospital").subscribe(response => {
         this.places = response;
+        
+        console.log(response[0].name)
+        //this.setMarker("med", [response.longitude, response.latitude], true, response.name)
+        console.log(this.places)
       })
     }
 
