@@ -23,3 +23,43 @@ ion-title {
 .mapmenu {height: 8%;}
 .mapselect {float: left;}
 .verticallist {display: flex; flex-direction: row}
+
+// ion-spinner {
+//     
+//     align-self: center;
+// }
+
+.spinnerCenter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+ion-spinner * {
+    stroke: #ff0000;
+    fill: #8b0000;
+    position: fixed;
+    z-index: 999;
+    width: 40px !important;
+    height: 40px !important;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+ion-card-title {
+    word-wrap: break-word;
+}
+  ion-item * {
+    white-space: normal;
+    float: left;
+    width: inherit;
+    height: auto;
+    word-wrap: break-word;
+  }
+

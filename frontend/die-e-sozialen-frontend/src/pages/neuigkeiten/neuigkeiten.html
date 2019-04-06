@@ -10,36 +10,6 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding *ngIf="!loggedIn">
-  <h2>Geschützter Bereich</h2>
-    <form #form="ngForm" (ngSubmit)="login(form.value)">
-        <div padding>
-          <ion-item>
-            <ion-input name="email" type="email" placeholder="Email" ngModel required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
-          </ion-item>
-        </div>
-        <div padding>
-          <button ion-button type="submit" [disabled]="form.invalid" expand="block">Login</button>
-        </div>
-</form>
-</ion-content>
-
-<ion-content padding *ngIf="loggedIn">
-  <ion-list>
-    <ion-list-header>
-      <h1>Messages</h1>
-    </ion-list-header>
-    <a ion-item (click)="openModal({charNum: 0})">
-      Test Message0
-    </a>
-    <a ion-item (click)="openModal({charNum: 1})">
-      Test Message1
-    </a>
-    <a ion-item (click)="openModal({charNum: 2})">
-      Test Message2
-    </a>
-  </ion-list>
+<ion-content padding>
+  
 </ion-content>
