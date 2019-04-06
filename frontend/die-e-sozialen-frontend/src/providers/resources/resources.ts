@@ -24,7 +24,7 @@ export class ResourcesProvider {
   }
 
   public getMapContent(type): Observable<any> {
-    return this.httpClient.get("/getMapContent" + type);
+    return this.httpClient.get("/getMapContent" + "?" + type);
   }
 
   public getAuthorities(): Observable<any> {

@@ -21,6 +21,7 @@ export class KartePage {
 
   map: Map;
   maxzoom: 18;
+  places: JSON;
 
   public form = [
     { val: 'Medizinische Versorgung', isChecked: false },
@@ -83,11 +84,16 @@ export class KartePage {
     console.log("Geklickt")
     var resources = new ResourcesProvider(this.httpClient);
 
+    console.log(this.form[0].val)
+
     if (this.form[0].isChecked) {
-      var results = resources.getMapContent("hospital");
+      resources.getMapContent("hospital").subscribe(response => {
+        this.places = response;
+      })
     }
+
     if (this.form[1].isChecked) {
-      
+
     }
 
   }
