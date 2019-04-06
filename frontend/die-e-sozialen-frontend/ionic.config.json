@@ -12,7 +12,8 @@
     }
   ],
   "styles": [
-    "./node_modules/leaflet/dist/leaflet.css"
+    "./node_modules/leaflet/dist/leaflet.css",
+    "./node_modules/bootstrap/dist/css/bootstrap.min.css"
   ],
   "proxies": [
     {
@@ -26,6 +27,10 @@
     {
       "path": "/getAuthorities",
       "proxyUrl": "http://localhost:8080/getAuthorities"
+    },
+    {
+      "path": "/offerHelp",
+      "proxyUrl": "http://localhost:8080/offerHelp"
     }
   ]
 }

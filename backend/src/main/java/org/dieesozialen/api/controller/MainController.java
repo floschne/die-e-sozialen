@@ -106,8 +106,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/offerHelp", method = RequestMethod.POST)
-    public String offerHelp(@RequestBody OfferedHelp help) {
-        return this.offerHelpService.offerHelp(help);
+    public OfferHelpResponse offerHelp(@RequestBody OfferedHelp help) {
+        return new OfferHelpResponse(this.offerHelpService.offerHelp(help));
     }
 
     @RequestMapping(value = "/showHelp", method = RequestMethod.GET)
