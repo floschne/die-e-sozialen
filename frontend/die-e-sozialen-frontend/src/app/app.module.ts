@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { AuthProvider } from '../providers/auth/auth';
 import { NachrichtenPage, ModalContentPage } from '../pages/nachrichten/nachrichten';
+import * as OpenPGP from "openpgp"
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { NachrichtenPage, ModalContentPage } from '../pages/nachrichten/nachrich
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
