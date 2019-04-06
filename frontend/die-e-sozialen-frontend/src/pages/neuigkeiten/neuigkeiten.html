@@ -10,9 +10,23 @@
   </ion-navbar>
 </ion-header>
 
+<ion-content padding *ngIf="!loggedIn">
+    <form #form="ngForm" (ngSubmit)="login(form.value)">
+        <div padding>
+          <ion-item>
+            <ion-input name="email" type="email" placeholder="Email" ngModel required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+          </ion-item>
+        </div>
+        <div padding>
+          <button ion-button type="submit" [disabled]="form.invalid" expand="block">Login</button>
+        </div>
+</form>
+</ion-content>
 
-<ion-content padding>
-
+<ion-content padding *ngIf="loggedIn">
   <ion-list>
     <ion-list-header>
       <h1>Messages</h1>
@@ -27,5 +41,4 @@
       Test Message2
     </a>
   </ion-list>
-
 </ion-content>

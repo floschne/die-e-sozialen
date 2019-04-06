@@ -19,21 +19,7 @@ export class ResourcesProvider {
     return this.httpClient.get("/helloWorld");
   }
 
-  public getMessages(): any {
-    // return this.httpClient.get("/getMessages");
-    return [
-      {
-        title: 'test',
-        content: 'content'
-      },
-      {
-        title: 'test1',
-        content: 'content'
-      },
-      {
-        title: 'test2',
-        content: 'content'
-      }
-  ]
+  public getMessages(): Observable<any> {
+    return this.httpClient.get("/getMessages");
   }
 }
