@@ -19,19 +19,19 @@ public class MapApi {
 
     private RestTemplate restTemplate;
 
-    public MapApi() {}
+    public MapApi() {
+        this.restTemplate = new RestTemplate();
+    }
 
     public List<MapInformation> getMapInformation(String type) {
         List<MapInformation> infoList = new ArrayList<MapInformation>();
-        if(type.equals("hospital")){
-            MapInformation info = new MapInformation(231,"UKE", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
+        if (type.equals("hospital")) {
+            MapInformation info = new MapInformation(231, "UKE", new Coordinates(125.25, 32165413.22), "Diese Straße", "Jener Ort", "DatWebAdress", "ExtraN1", "ExtraN2");
             infoList.add(info);
-        }
-        else if (type.equals("shelter")){
-            MapInformation info = new MapInformation(231,"Studentenwohnheim", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
+        } else if (type.equals("shelter")) {
+            MapInformation info = new MapInformation(231, "Studentenwohnheim", new Coordinates(125.25, 32165413.22), "Diese Straße", "Jener Ort", "DatWebAdress", "ExtraN1", "ExtraN2");
             infoList.add(info);
-        }
-        else{
+        } else {
             MapInformation info = new MapInformation();
             infoList.add(info);
         }
