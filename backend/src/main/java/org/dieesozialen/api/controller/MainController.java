@@ -4,14 +4,8 @@ package org.dieesozialen.api.controller;
 import io.swagger.annotations.Api;
 import org.dieesozialen.api.respones.PlainStringResponse;
 import org.dieesozialen.db.repos.QuoteRepo;
-import org.dieesozialen.entity.Authority;
-import org.dieesozialen.entity.Message;
-import org.dieesozialen.entity.Quote;
-import org.dieesozialen.service.AuthorityService;
-import org.dieesozialen.service.GMailService;
-import org.dieesozialen.service.QuoteApi;
-import org.dieesozialen.entity.MapInformation;
-import org.dieesozialen.service.MapApi;
+import org.dieesozialen.entity.*;
+import org.dieesozialen.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,14 +25,21 @@ public class MainController {
     private final GMailService gMailService;
     private final AuthorityService authorityService;
     private final MapApi mapApi;
+    private final OfferHelpService offerHelpService;
 
     @Autowired
-    public MainController(QuoteApi quoteApi, QuoteRepo quoteRepo, GMailService gMailService, AuthorityService authorityService, MapApi mapApi) {
+    public MainController(QuoteApi quoteApi,
+                          QuoteRepo quoteRepo,
+                          GMailService gMailService,
+                          AuthorityService authorityService,
+                          MapApi mapApi,
+                          OfferHelpService offerHelpService) {
         this.quoteApi = quoteApi;
         this.quoteRepo = quoteRepo;
         this.gMailService = gMailService;
         this.authorityService = authorityService;
         this.mapApi = mapApi;
+        this.offerHelpService = offerHelpService;
     }
 
     /**
@@ -102,5 +103,20 @@ public class MainController {
     public List<MapInformation> getMapContent(@RequestParam("type") String paramType) {
         List<MapInformation> info = this.mapApi.getMapInformation(paramType);
         return info;
+    }
+
+    @RequestMapping(value = "/offerHelp", method = RequestMethod.POST)
+    public String offerHelp(@RequestBody OfferedHelp help) {
+        return this.offerHelpService.offerHelp(help);
+    }
+
+    @RequestMapping(value = "/showHelp", method = RequestMethod.GET)
+    public List<OfferedHelp> showHelp() {
+        return this.offerHelpService.showHelp();
+    }
+
+    @RequestMapping(value = "/deleteHelp/{id}", method = RequestMethod.DELETE)
+    public Boolean deleteHelp(@PathVariable String id) {
+        return this.offerHelpService.deleteHelp(id);
     }
 }
