@@ -1,26 +1,24 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading, Modal, Form } from 'ionic-angular';
-import { ResourcesProvider } from '../../providers/resources/resources';
+import { IonicPage, NavController, NavParams, ModalController, Form, Platform, ViewController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-import { FileEncryption } from '@ionic-native/file-encryption/ngx';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { AuthProvider } from '../../providers/auth/auth';
+import { ResourcesProvider } from '../../providers/resources/resources';
 
-// /**
-//  * Generated class for the NeuigkeitenPage page.
-//  *
-//  * See https://ionicframework.com/docs/components/#navigation for more info on
-//  * Ionic pages and navigation.
-//  */
+/**
+ * Generated class for the neuigkeitenPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
   selector: 'page-neuigkeiten',
-  templateUrl: 'neuigkeiten.html'
+  templateUrl: 'neuigkeiten.html',
 })
 export class NeuigkeitenPage {
-  loggedIn: boolean = this.authProvider.loggedIn;
 
+  loggedIn: boolean = false;
   messages: JSON;
   
   constructor(
@@ -76,10 +74,6 @@ export class ModalContentPage {
   }
 
   ionViewDidLoad() {
-    this.message = this.navParams.get('message')
-  }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
+    console.log('ionViewDidLoad NeuigkeitenPage');
   }
 }
