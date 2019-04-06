@@ -7,7 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NeuigkeitenPage } from '../pages/neuigkeiten/neuigkeiten';
+import { NeuigkeitenPage, ModalContentPage } from '../pages/neuigkeiten/neuigkeiten';
 import { InformationenPage } from '../pages/informationen/informationen';
 import { KartePage } from '../pages/karte/karte';
 
@@ -17,7 +17,8 @@ import { KartePage } from '../pages/karte/karte';
     TabsPage,
     NeuigkeitenPage,
     InformationenPage,
-    KartePage
+    KartePage,
+    ModalContentPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,8 @@ import { KartePage } from '../pages/karte/karte';
     TabsPage,
     NeuigkeitenPage,
     KartePage,
-    InformationenPage
+    InformationenPage,
+    ModalContentPage
   ],
   providers: [
     StatusBar,
