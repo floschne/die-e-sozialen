@@ -32,7 +32,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "SCHHHH19 API",
+                "Die e-sozialen API",
                 "The REST API (documentation) for the Service",
                 "Test & Development",
                 "#",
