@@ -22,4 +22,8 @@ export class ResourcesProvider {
   public getMessages(): Observable<any> {
     return this.httpClient.get("/getMessages");
   }
+
+  public getMapContent(): Observable<any> {
+    return this.httpClient.get("/getMapContent");
+  }
 }

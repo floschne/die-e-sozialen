@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Map, latLng, tileLayer, Layer, Marker, Icon, Circle, Polygon } from 'leaflet';
+import { ResourcesProvider } from '../../providers/resources/resources';
+import { HttpClient } from '@angular/common/http';
+
 
 /**
  * Generated class for the KartePage page.
@@ -24,7 +27,9 @@ export class KartePage {
     { val: 'Notunterkünfte', isChecked: false }
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public httpClient: HttpClient,) {
   }
 
   ionViewDidLoad() {
@@ -76,6 +81,9 @@ export class KartePage {
 
   selectChange() {
     console.log("Geklickt")
+    var resources = new ResourcesProvider(this.httpClient);
+    results = resources.getMapContent("hospital");
+
   }
 
 }
