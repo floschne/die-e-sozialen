@@ -27,6 +27,7 @@
     "@ionic-native/status-bar": "~4.18.0",
     "@ionic/storage": "2.2.0",
     "@types/leaflet": "^1.4.3",
+    "@types/openpgp": "^4.4.3",
     "cordova-safe": "2.0.1",
     "ionic-angular": "3.9.3",
     "ionicons": "3.0.0",
