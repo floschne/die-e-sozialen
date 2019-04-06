@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 // /**
 //  * Generated class for the NeuigkeitenPage page.
@@ -18,24 +19,30 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 })
 export class NeuigkeitenPage {
 
-  constructor(private fileEncryption: FileEncryption, 
+  messages: JSON;
+  constructor(
+    //private fileEncryption: FileEncryption, 
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public httpClient: HttpClient,
-    public modalCtrl: ModalController,) {
-    this.fileEncryption.encrypt('assets/json/topSecret.json', 'secretKey').then((res) => {
-      console.log(res);
-    });
+    public modalCtrl: ModalController) {
+    // this.fileEncryption.encrypt('assets/json/topSecret.json', 'secretKey').then((res) => {
+    //   console.log(res);
+    // });
   }
 
   ionViewDidLoad() {
-    var resources = new ResourcesProvider(this.HttpClient);
-    resources.getHelloWorld().subscribe(data => console.log(data));
+    var resources = new ResourcesProvider(this.httpClient);
+    resources.getMessages().subscribe(response => {
+      console.log(response)
+      this.messages = response;
+    })
   }
 
-  openModal(characterNum) {
+  openModal(message) {
 
-    let modal = this.modalCtrl.create(ModalContentPage, characterNum);
+    console.log(message);
+    let modal = this.modalCtrl.create(ModalContentPage, {message: message});
     modal.present();
   }
 }
@@ -44,32 +51,21 @@ export class NeuigkeitenPage {
   templateUrl: 'modal-content.html'
 })
 export class ModalContentPage {
-  character;
-  mail;
+  message = {};
+  messages: JSON;
+  loading: boolean = false;
 
   constructor(
     public platform: Platform,
-    public params: NavParams,
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
     public viewCtrl: ViewController,
-    public HttpClient: HttpClient
+    public httpClient: HttpClient
   ) {
-    var resources = new ResourcesProvider(this.HttpClient)
-    var mails = resources.getMessages()
-    // var mails = [
-    // {
-    //   title: 'Test Mail0',
-    //   content: 'i hope this works'
-    // }, 
-    // {
-    //   title: 'Test Mail1',
-    //   content: 'trolololo'
-    // },
-    // {
-    //   title: 'Test Mail2',
-    //   content: 'kek'
-    // }
-    //]
-    this.mail = mails[this.params.get('charNum')];
+  }
+
+  ionViewDidLoad() {
+    this.message = this.navParams.get('message')
   }
 
   dismiss() {

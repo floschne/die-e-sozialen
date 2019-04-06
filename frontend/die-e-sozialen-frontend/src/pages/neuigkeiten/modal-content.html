@@ -12,14 +12,28 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list>
-        <ion-item>
-          <h1>{{mail.title}}</h1>
-        </ion-item>
-        <ion-item>
-            <div>
-                {{mail.content}}
-            </div>
-        </ion-item>
-    </ion-list>
+    <div *ngIf="loading">
+        <ion-content padding class="spinnerCenter">
+            <ion-spinner name="crescent"></ion-spinner>
+        </ion-content>
+    </div>
+    <div *ngIf="!loading">
+        <ion-list >
+            <ion-item>
+              <h1>{{message.subject}}</h1>
+            </ion-item>
+            <ion-item>
+              {{message.sender}}
+            </ion-item>
+            <ion-item>
+              {{message.date}}
+            </ion-item>
+            <ion-item>
+                <div>
+                    {{message.content}}
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+    
   </ion-content>

@@ -17,15 +17,9 @@
     <ion-list-header>
       <h1>Messages</h1>
     </ion-list-header>
-    <a ion-item (click)="openModal({charNum: 0})">
-      Test Message0
-    </a>
-    <a ion-item (click)="openModal({charNum: 1})">
-      Test Message1
-    </a>
-    <a ion-item (click)="openModal({charNum: 2})">
-      Test Message2
-    </a>
+    <ion-item *ngFor="let message of messages" (click)="openModal(message)">
+      {{message.subject}}
+    </ion-item>
   </ion-list>
 
 </ion-content>
