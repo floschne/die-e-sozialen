@@ -12,6 +12,7 @@ import { ResourcesProvider } from '../providers/resources/resources';
 import { HttpClientModule } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { AuthProvider } from '../providers/auth/auth';
+import { NachrichtenPage } from '../pages/nachrichten/nachrichten';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthProvider } from '../providers/auth/auth';
     InformationenPage,
     KartePage,
     ModalContentPage,
+    NachrichtenPage
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { AuthProvider } from '../providers/auth/auth';
     KartePage,
     InformationenPage,
     ModalContentPage,
+    NachrichtenPage
   ],
   providers: [
     StatusBar,

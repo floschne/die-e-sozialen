@@ -10,8 +10,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding *ngIf="!loggedIn">
-  <h2>Geschützter Bereich</h2>
+<ion-content padding>
+  <div *ngIf="!loggedIn">
+      <h2>Geschützter Bereich</h2>
     <form #form="ngForm" (ngSubmit)="login(form.value)">
         <div padding>
           <ion-item>
@@ -25,10 +26,9 @@
           <button ion-button type="submit" [disabled]="form.invalid" expand="block">Login</button>
         </div>
 </form>
-</ion-content>
+  </div>
 
-<ion-content padding *ngIf="loggedIn">
-  <ion-list>
+  <ion-list *ngIf="loggedIn">
     <ion-list-header>
       <h1>Messages</h1>
     </ion-list-header>
