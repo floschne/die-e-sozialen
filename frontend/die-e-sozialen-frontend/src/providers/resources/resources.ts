@@ -18,4 +18,8 @@ export class ResourcesProvider {
   public getHelloWorld(): Observable<any> {
     return this.httpClient.get("/helloWorld");
   }
+
+  public getMessages(): Observable<any> {
+    return this.httpClient.get("/getMessages");
+  }
 }
