@@ -82,7 +82,13 @@ export class KartePage {
   selectChange() {
     console.log("Geklickt")
     var resources = new ResourcesProvider(this.httpClient);
-    results = resources.getMapContent("hospital");
+
+    if (this.form[0].isChecked) {
+      var results = resources.getMapContent("hospital");
+    }
+    if (this.form[1].isChecked) {
+      
+    }
 
   }
 

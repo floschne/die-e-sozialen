@@ -23,12 +23,11 @@ export class ResourcesProvider {
     return this.httpClient.get("/getMessages");
   }
 
-<<<<<<< HEAD
-  public getMapContent(): Observable<any> {
-    return this.httpClient.get("/getMapContent");
-=======
+  public getMapContent(type): Observable<any> {
+    return this.httpClient.get("/getMapContent" + type);
+  }
+
   public getAuthorities(): Observable<any> {
-    return this.httpClient.get('/getAuthorities');
->>>>>>> staging
+    return this.httpClient.get("/getAuthorities");
   }
 }
