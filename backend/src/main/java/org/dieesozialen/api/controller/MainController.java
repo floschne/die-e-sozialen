@@ -10,6 +10,8 @@ import org.dieesozialen.entity.Quote;
 import org.dieesozialen.service.AuthorityService;
 import org.dieesozialen.service.GMailService;
 import org.dieesozialen.service.QuoteApi;
+import org.dieesozialen.entity.MapInformation;
+import org.dieesozialen.service.MapApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,13 +30,15 @@ public class MainController {
     private final QuoteRepo quoteRepo;
     private final GMailService gMailService;
     private final AuthorityService authorityService;
+    private final MapApi mapApi;
 
     @Autowired
-    public MainController(QuoteApi quoteApi, QuoteRepo quoteRepo, GMailService gMailService, AuthorityService authorityService) {
+    public MainController(QuoteApi quoteApi, QuoteRepo quoteRepo, GMailService gMailService, AuthorityService authorityService, MapApi mapApi) {
         this.quoteApi = quoteApi;
         this.quoteRepo = quoteRepo;
         this.gMailService = gMailService;
         this.authorityService = authorityService;
+        this.mapApi = mapApi;
     }
 
     /**
@@ -89,5 +93,14 @@ public class MainController {
     @RequestMapping(value = "/getAuthorities", method = RequestMethod.GET)
     public List<Authority> getAuthorities() {
         return this.authorityService.getAuthorities();
+    }
+
+    /**
+     * @return Coordinates of a map type
+     */
+    @RequestMapping(value = "/getMapContent", method = RequestMethod.GET, produces = "application/json")
+    public List<MapInformation> getMapContent(@RequestParam("type") String paramType) {
+        List<MapInformation> info = this.mapApi.getMapInformation(paramType);
+        return info;
     }
 }

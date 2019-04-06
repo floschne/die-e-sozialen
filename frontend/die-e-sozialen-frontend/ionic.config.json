@@ -1,5 +1,31 @@
 {
   "name": "die-e-sozialen-frontend",
-  "integrations": {},
-  "type": "ionic-angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "assets": [
+    {
+      "glob": "**/*",
+      "input": "./node_modules/leaflet/dist/images",
+      "output": "leaflet/"
+    }
+  ],
+  "styles": [
+    "./node_modules/leaflet/dist/leaflet.css"
+  ],
+  "proxies": [
+    {
+      "path": "/helloWorld",
+      "proxyUrl": "http://localhost:8080/helloworld"
+    },
+    {
+      "path": "/getMessages",
+      "proxyUrl": "http://localhost:8080/getMessages"
+    }
+  ]
 }
+
+
+
+
