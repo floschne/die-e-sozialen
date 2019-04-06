@@ -22,6 +22,7 @@ export class NeuigkeitenPage {
   loggedIn: boolean = this.authProvider.loggedIn;
 
   messages: JSON;
+  
   constructor(
     //private fileEncryption: FileEncryption, 
     public navCtrl: NavController, 
