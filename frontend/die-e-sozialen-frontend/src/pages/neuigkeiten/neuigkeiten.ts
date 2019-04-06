@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
+import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 
 /**
  * Generated class for the NeuigkeitenPage page.
@@ -17,12 +18,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NeuigkeitenPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
+  constructor(private fileEncryption: FileEncryption, public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
+    this.fileEncryption.encrypt('assets/json/topSecret.json', 'secretKey').then((res) => {
+      console.log(res);
+    });
   }
 
   ionViewDidLoad() {
     var resources = new ResourcesProvider(this.httpClient);
     resources.getHelloWorld().subscribe(data => console.log(data));
-  }
 
+  }
 }
