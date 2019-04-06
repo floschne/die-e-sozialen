@@ -1,5 +1,18 @@
 {
   "name": "die-e-sozialen-frontend",
   "integrations": {},
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "assets": [
+    {
+      "glob": "**/*",
+      "input": "./node_modules/leaflet/dist/images",
+      "output": "leaflet/"
+    }
+  ],
+  "styles": [
+    "./node_modules/leaflet/dist/leaflet.css"
+  ]
 }
+
+
+

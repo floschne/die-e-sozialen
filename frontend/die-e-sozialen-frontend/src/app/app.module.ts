@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NeuigkeitenPage } from '../pages/neuigkeiten/neuigkeiten';
 import { InformationenPage } from '../pages/informationen/informationen';
 import { KartePage } from '../pages/karte/karte';
+import { L } from '@angular/core/src/render3';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { KartePage } from '../pages/karte/karte';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
