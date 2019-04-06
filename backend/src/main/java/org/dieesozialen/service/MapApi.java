@@ -1,14 +1,26 @@
 package org.dieesozialen.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.dieesozialen.entity.Coordinates;
+import org.dieesozialen.entity.HospitalXML;
 import org.dieesozialen.entity.MapInformation;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 
 @Service
 @Slf4j
@@ -21,14 +33,30 @@ public class MapApi {
 
     public MapApi() {}
 
-    public List<MapInformation> getMapInformation(String type) {
+    public List<MapInformation> getMapInformation(String type) throws IOException, XMLStreamException {
         List<MapInformation> infoList = new ArrayList<MapInformation>();
         if(type.equals("hospital")){
-            MapInformation info = new MapInformation(231,"UKE", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
-            infoList.add(info);
+            //MapInformation info = new MapInformation(231,"UKE", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
+            //infoList.add(info);
+
+            XMLInputFactory f = XMLInputFactory.newFactory();
+            URL inputFile = new URL(urlHospital);
+            XMLStreamReader sr = f.createXMLStreamReader(inputFile.openStream());
+
+            XmlMapper mapper = new XmlMapper();
+            sr.next(); // to point to <root>
+            sr.next(); // to point to root-element under root
+            sr.next(); // to point to root-element under root
+            while(sr.hasNext()){
+                sr.next();
+                MapInformation info = mapper.readValue(sr, MapInformation.class);
+                infoList.add(info);
+            }
+            sr.close();
+
         }
         else if (type.equals("shelter")){
-            MapInformation info = new MapInformation(231,"Studentenwohnheim", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
+            MapInformation info = new MapInformation("krankenhaus1","Studentenwohnheim", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
             infoList.add(info);
         }
         else{

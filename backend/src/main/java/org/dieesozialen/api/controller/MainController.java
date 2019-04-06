@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
@@ -89,7 +90,7 @@ public class MainController {
      * @return Coordinates of a map type
      */
     @RequestMapping(value = "/getMapContent", method = RequestMethod.GET, produces = "application/json")
-    public List<MapInformation> getMapContent(@RequestParam("type") String paramType) {
+    public List<MapInformation> getMapContent(@RequestParam("type") String paramType) throws IOException, XMLStreamException {
         List<MapInformation> info = this.mapApi.getMapInformation(paramType);
         return info;
     }
