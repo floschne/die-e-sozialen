@@ -19,4 +19,7 @@ ion-title {
     text-align: center;
 }
 
-#mapid { height: 900px; }
+#mapid {height: 92%;}
+.mapmenu {height: 8%;}
+.mapselect {float: left;}
+.verticallist {display: flex; flex-direction: row}

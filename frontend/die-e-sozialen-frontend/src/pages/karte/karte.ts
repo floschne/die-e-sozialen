@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Map, latLng, tileLayer, Layer, Marker, Icon, Circle, Polygon } from 'leaflet';
 
 /**
@@ -18,6 +18,11 @@ export class KartePage {
 
   map: Map;
   maxzoom: 18;
+
+  public form = [
+    { val: 'Medizinische Versorgung', isChecked: false },
+    { val: 'Notunterkünfte', isChecked: false }
+  ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -67,6 +72,10 @@ export class KartePage {
     if (popup) {
       marker.openPopup();  
     }
+  }
+
+  selectChange() {
+    console.log("Geklickt")
   }
 
 }
