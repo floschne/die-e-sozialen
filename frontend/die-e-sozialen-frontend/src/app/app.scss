@@ -46,3 +46,11 @@ ion-spinner * {
     bottom: 0;
     right: 0;
   }
+
+  ion-item * {
+    white-space: normal;
+    float: left;
+    width: inherit;
+    height: auto;
+    word-wrap: break-word;
+  }
