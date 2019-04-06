@@ -47,7 +47,6 @@ export class NeuigkeitenPage {
   }
 
   login(form: Form) {
-    console.log(form);
     this.authProvider.login('testUser');
   }
 

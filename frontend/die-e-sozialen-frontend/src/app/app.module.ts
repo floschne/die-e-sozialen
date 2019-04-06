@@ -1,4 +1,4 @@
-import {NgModule, ErrorHandler} from '@angular/core';
+import {NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
@@ -13,8 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FileEncryption} from '@ionic-native/file-encryption/ngx';
 import {AuthProvider} from '../providers/auth/auth';
 import {NachrichtenPage, ModalContentPage} from '../pages/nachrichten/nachrichten';
-import {HilfeBietenPage} from "../pages/hilfe-bieten/hilfe-bieten";
-
+import {HilfeBietenPage, HilfeAnbietenModal} from "../pages/hilfe-bieten/hilfe-bieten";
+ 
 @NgModule({
   declarations: [
     MyApp,
@@ -24,7 +24,8 @@ import {HilfeBietenPage} from "../pages/hilfe-bieten/hilfe-bieten";
     KartePage,
     ModalContentPage,
     NachrichtenPage,
-    HilfeBietenPage
+    HilfeBietenPage,
+    HilfeAnbietenModal
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,8 @@ import {HilfeBietenPage} from "../pages/hilfe-bieten/hilfe-bieten";
     InformationenPage,
     ModalContentPage,
     NachrichtenPage,
-    HilfeBietenPage
+    HilfeBietenPage,
+    HilfeAnbietenModal
   ],
   providers: [
     StatusBar,
@@ -49,7 +51,8 @@ import {HilfeBietenPage} from "../pages/hilfe-bieten/hilfe-bieten";
     ResourcesProvider,
     FileEncryption,
     AuthProvider
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {
 }

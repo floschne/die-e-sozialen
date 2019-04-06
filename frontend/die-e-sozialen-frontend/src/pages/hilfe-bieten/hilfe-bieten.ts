@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ViewController, ModalController, Form} from 'ionic-angular';
 import {ResourcesProvider} from "../../providers/resources/resources";
 import {HttpClient} from "@angular/common/http";
 
@@ -19,14 +19,41 @@ export class HilfeBietenPage {
 
   offerID: any;
   success: Boolean;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public httpClient: HttpClient,) {
+              public httpClient: HttpClient,
+              public modalCtr: ModalController) {
     this.success = false;
     this.offerID = "not yet set";
   }
 
-  offerHelp(value: any) {
+  openHilfeAnbietenModal() {
+    let modal = this.modalCtr.create(HilfeAnbietenModal);
+    modal.present();
+  }
+}
+
+@Component({
+  templateUrl: 'hilfe-anbieten-modal.html'
+})
+export class HilfeAnbietenModal {
+  offerID: JSON;
+  success: boolean = false;
+
+  constructor(
+  public platform: Platform,
+  public navCtrl: NavController, 
+  public navParams: NavParams, 
+  public viewCtrl: ViewController,
+  public httpClient: HttpClient) {
+
+  }
+
+  ionViewDidLoad() {
+  }
+
+  processForm(value: any) {
     let offer = {
       "description": value.description,
       "offerer": {
@@ -50,4 +77,6 @@ export class HilfeBietenPage {
       this.success = true;
     });
   }
+  // modal has to be closed after the job is done
+  // this.viewCtrl.dismiss();
 }
