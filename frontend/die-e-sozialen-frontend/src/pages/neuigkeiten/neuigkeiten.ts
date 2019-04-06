@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ResourcesProvider } from '../../providers/resources/resources';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * Generated class for the NeuigkeitenPage page.
@@ -15,11 +17,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NeuigkeitenPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public httpClient: HttpClient) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NeuigkeitenPage');
+    var resources = new ResourcesProvider(this.httpClient);
+    resources.getHelloWorld().subscribe(data => console.log(data));
   }
 
 }
