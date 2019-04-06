@@ -44,23 +44,25 @@ export class ModalContentPage {
   constructor(
     public platform: Platform,
     public params: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public HttpClient: HttpClient
   ) {
-  
-    var mails = [
-    {
-      title: 'Test Mail0',
-      content: 'i hope this works'
-    }, 
-    {
-      title: 'Test Mail1',
-      content: 'trolololo'
-    },
-    {
-      title: 'Test Mail2',
-      content: 'kek'
-    }
-  ]
+    var resources = new ResourcesProvider(this.HttpClient)
+    var mails = resources.getMessages()
+    // var mails = [
+    // {
+    //   title: 'Test Mail0',
+    //   content: 'i hope this works'
+    // }, 
+    // {
+    //   title: 'Test Mail1',
+    //   content: 'trolololo'
+    // },
+    // {
+    //   title: 'Test Mail2',
+    //   content: 'kek'
+    // }
+    //]
     this.mail = mails[this.params.get('charNum')];
   }
 
