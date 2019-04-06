@@ -12,7 +12,4 @@ import { ResourcesProvider } from '../../providers/resources/resources';
   ],
 })
 export class KartePageModule {
-  ngOnInit() {
-    
-  }
 }

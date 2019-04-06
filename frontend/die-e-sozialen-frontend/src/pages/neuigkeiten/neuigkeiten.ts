@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading, Modal, Form } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { AuthProvider } from '../../providers/auth/auth';
 
 // /**
 //  * Generated class for the NeuigkeitenPage page.
@@ -18,6 +19,7 @@ import { PARAMETERS } from '@angular/core/src/util/decorators';
   templateUrl: 'neuigkeiten.html'
 })
 export class NeuigkeitenPage {
+  loggedIn: boolean = this.authProvider.loggedIn;
 
   messages: JSON;
   constructor(
@@ -25,10 +27,9 @@ export class NeuigkeitenPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public httpClient: HttpClient,
-    public modalCtrl: ModalController) {
-    // this.fileEncryption.encrypt('assets/json/topSecret.json', 'secretKey').then((res) => {
-    //   console.log(res);
-    // });
+    public modalCtrl: ModalController,
+    public authProvider: AuthProvider) {
+
   }
 
   ionViewDidLoad() {
@@ -44,6 +45,15 @@ export class NeuigkeitenPage {
     console.log(message);
     let modal = this.modalCtrl.create(ModalContentPage, {message: message});
     modal.present();
+  }
+
+  login(form: Form) {
+    console.log(form);
+    this.authProvider.login('testUser');
+  }
+
+  ngDoCheck() {
+    this.loggedIn = this.authProvider.loggedIn ? true : false;
   }
 }
 

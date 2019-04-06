@@ -11,6 +11,8 @@ import { KartePage } from '../pages/karte/karte';
 import { ResourcesProvider } from '../providers/resources/resources';
 import { HttpClientModule } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
+import { AuthProvider } from '../providers/auth/auth';
+import { NachrichtenPage } from '../pages/nachrichten/nachrichten';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
     NeuigkeitenPage,
     InformationenPage,
     KartePage,
-    ModalContentPage
+    ModalContentPage,
+    NachrichtenPage
   ],
   imports: [
     BrowserModule,
@@ -33,14 +36,16 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
     NeuigkeitenPage,
     KartePage,
     InformationenPage,
-    ModalContentPage
+    ModalContentPage,
+    NachrichtenPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ResourcesProvider,
-    FileEncryption
+    FileEncryption,
+    AuthProvider
   ]
 })
 export class AppModule {}
