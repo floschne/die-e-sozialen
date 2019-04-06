@@ -1,6 +1,7 @@
-import { IonicPage, Content } from "ionic-angular";
 import { Component } from '@angular/core';
-import { ModalController, NavController, Platform, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController } from 'ionic-angular';
+import { ResourcesProvider } from '../../providers/resources/resources';
+import { HttpClient } from '@angular/common/http';
 
 // /**
 //  * Generated class for the NeuigkeitenPage page.
@@ -17,11 +18,13 @@ import { ModalController, NavController, Platform, NavParams, ViewController } f
 export class NeuigkeitenPage {
   constructor(public navCtrl: NavController, 
         public navParams: NavParams, 
-        public modalCtrl: ModalController) {
+        public modalCtrl: ModalController, 
+        public HttpClient: HttpClient) {
       }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NeuigkeitenPage');
+    var resources = new ResourcesProvider(this.HttpClient);
+    resources.getHelloWorld().subscribe(data => console.log(data));
   }
 
   openModal(characterNum) {

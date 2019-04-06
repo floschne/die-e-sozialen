@@ -10,6 +10,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NeuigkeitenPage, ModalContentPage } from '../pages/neuigkeiten/neuigkeiten';
 import { InformationenPage } from '../pages/informationen/informationen';
 import { KartePage } from '../pages/karte/karte';
+import { ResourcesProvider } from '../providers/resources/resources';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { KartePage } from '../pages/karte/karte';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +39,8 @@ import { KartePage } from '../pages/karte/karte';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ResourcesProvider
   ]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ package org.dieesozialen.api.controller;
 
 
 import io.swagger.annotations.Api;
+import org.dieesozialen.api.respones.PlainStringResponse;
 import org.dieesozialen.db.repos.QuoteRepo;
 import org.dieesozialen.entity.Quote;
 import org.dieesozialen.service.QuoteApi;
@@ -38,9 +39,9 @@ public class MainController {
     /**
      * @return A shoutout to the world!
      */
-    @RequestMapping(value = "/helloworld", method = RequestMethod.GET)
-    public String helloWorld() {
-        return "Hello world!";
+    @RequestMapping(value = "/helloworld", method = RequestMethod.GET, produces = "application/json")
+    public PlainStringResponse helloWorld() {
+        return new PlainStringResponse("Hello world!");
     }
 
 
