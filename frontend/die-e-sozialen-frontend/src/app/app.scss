@@ -47,6 +47,9 @@ ion-spinner * {
     right: 0;
   }
 
+ion-card-title {
+    word-wrap: break-word;
+}
   ion-item * {
     white-space: normal;
     float: left;

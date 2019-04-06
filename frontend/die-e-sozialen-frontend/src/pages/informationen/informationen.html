@@ -11,5 +11,25 @@
 </ion-header>
 
 <ion-content padding>
-  
+    <ion-card *ngFor="let authority of authorities">
+      <ion-card-header>
+        <ion-card-title text-wrap>{{authority.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list text-wrap>
+          <ion-item *ngIf="authority.description">
+            {{authority.description}}
+          </ion-item>
+          <ion-item *ngIf="authority.phoneNumber">
+              {{authority.phoneNumber}}
+            </ion-item>
+            <ion-item *ngIf="authority.mail">
+                {{authority.mail}}
+              </ion-item>
+            <ion-item *ngIf="authority.street || authority.city">
+                {{authority.street}} {{authority.zip}}, {{authority.city}}
+              </ion-item>
+        </ion-list>
+      </ion-card-content>
+      </ion-card>
 </ion-content>
