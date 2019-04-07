@@ -34,4 +34,8 @@ export class ResourcesProvider {
   public postOffer(offer: any): Observable<any> {
     return this.httpClient.post("/offerHelp", offer);
   }
+
+  public getHelp(): Observable<any> {
+    return this.httpClient.get("/getHelp");
+  }
 }

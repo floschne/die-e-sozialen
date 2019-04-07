@@ -17,6 +17,7 @@ public class OfferedHelp {
     @Indexed
     private String id;
 
+    private String title;
     private Person offerer;
     private String period;
     private String description;

@@ -1,3 +1,29 @@
 page-hilfe-bieten {
+  .block-btn {
+    display: block;
+    width: 100%;
+  }
+
+  .no-margin {
+    margin: 0;
+  }
+
+  .no-padding {
+    padding: 0;
+  }
+
+  .header-padding {
+    padding: 5px;
+  }
+
+  .blue {
+    background: #488aff !important;
+  }
+
+  .fab-pos {
+    position: fixed;
+    bottom: 70px;
+    right: 10px;
+  }
 
 }
