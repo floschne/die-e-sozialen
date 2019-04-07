@@ -19,18 +19,18 @@
     </div>
     <div *ngIf="!loading">
         <ion-list >
-            <ion-item>
-              <h1>{{message.subject}}</h1>
+            <ion-item class="nachrichten-class">
+              <h1 class="nachrichten-class">{{message.subject}}</h1>
             </ion-item>
             <ion-item>
-              {{message.sender}}
+              <p class="nachrichten-class">{{message.sender}}</p>
             </ion-item>
             <ion-item>
-              {{message.date}}
+              <p class="nachrichten-class">{{message.date}}</p>
             </ion-item>
             <ion-item>
                 <div>
-                    {{message.content}}
+                  <p class="nachrichten-class">{{message.content}}</p>
                 </div>
             </ion-item>
         </ion-list>
