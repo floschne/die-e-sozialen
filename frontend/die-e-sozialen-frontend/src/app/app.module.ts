@@ -18,6 +18,7 @@ import { CollapseModule } from '../pages/collapse';
 import { AnimationBuilder } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { Splash } from '../pages/splash/splash'
 
  
 @NgModule({
@@ -31,6 +32,7 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,
+    Splash
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,
+    Splash
   ],
   providers: [
     StatusBar,
