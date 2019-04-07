@@ -72,8 +72,10 @@ public class MainController {
 
     @RequestMapping(value = "/getMessages", method = RequestMethod.GET)
     public List<Message> getMessages() throws GeneralSecurityException, IOException {
-        //return this.gMailService.getMessages();
-        return dummyMessages();
+        List<Message> res = new ArrayList<>();
+        res.addAll(this.gMailService.getMessages());
+        res.addAll(dummyMessages());
+        return res;
     }
 
     @RequestMapping(value = "/getAuthorities", method = RequestMethod.GET)
@@ -128,6 +130,24 @@ public class MainController {
                 .subject("Am Montag gibts Falafel")
                 .date("2. April 2019")
                 .content("Hallo Frau Vensu! Lecker schmecker!")
+                .build()
+        );
+
+        messages.add(Message.builder()
+                .sender("Gesundheitsamt")
+                .receiver("Ich")
+                .subject("Rauchen tötet dich!")
+                .date("1. April 2019")
+                .content("Hallo Raucher!")
+                .build()
+        );
+
+        messages.add(Message.builder()
+                .sender("Bundeswehr")
+                .receiver("Ich")
+                .subject("Krieg ist doof!")
+                .date("2. April 2019")
+                .content("Akk sein!")
                 .build()
         );
 

@@ -68,60 +68,64 @@ public class GMailService {
     }
 
     public List<org.dieesozialen.entity.Message> getMessages() throws GeneralSecurityException, IOException {
-        // Build a new authorized API client service.
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
+        try {
+            // Build a new authorized API client service.
+            final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+            Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                    .setApplicationName(APPLICATION_NAME)
+                    .build();
 
-        // authenticated user
-        String user = "me";
-        ListMessagesResponse listResponse = service.users().messages().list(user).execute();
-        List<Message> messages = listResponse.getMessages();
+            // authenticated user
+            String user = "me";
+            ListMessagesResponse listResponse = service.users().messages().list(user).execute();
+            List<Message> messages = listResponse.getMessages();
 
-        List<org.dieesozialen.entity.Message> results = new ArrayList<>();
+            List<org.dieesozialen.entity.Message> results = new ArrayList<>();
 
-        if (messages.isEmpty())
-            return Collections.emptyList();
-        else {
-            for (Message m : messages) {
-                org.dieesozialen.entity.Message msg = new org.dieesozialen.entity.Message();
-                Message my = service.users().messages().get(user, m.getId()).setFormat("full").execute();
-                MessagePart payload = my.getPayload();
-                // get from, to, subject, date headers
-                for (MessagePartHeader h : payload.getHeaders())
-                    switch (h.getName()) {
-                        case "From":
-                            msg.setSender(h.getValue());
-                            break;
-                        case "To":
-                            msg.setReceiver(h.getValue());
-                            break;
-                        case "Subject":
-                            msg.setSubject(h.getValue());
-                            break;
-                        case "Date":
-                            msg.setDate(h.getValue());
-                            break;
-                        default:
-                            break;
-                    }
+            if (messages.isEmpty())
+                return Collections.emptyList();
+            else {
+                for (Message m : messages) {
+                    org.dieesozialen.entity.Message msg = new org.dieesozialen.entity.Message();
+                    Message my = service.users().messages().get(user, m.getId()).setFormat("full").execute();
+                    MessagePart payload = my.getPayload();
+                    // get from, to, subject, date headers
+                    for (MessagePartHeader h : payload.getHeaders())
+                        switch (h.getName()) {
+                            case "From":
+                                msg.setSender(h.getValue());
+                                break;
+                            case "To":
+                                msg.setReceiver(h.getValue());
+                                break;
+                            case "Subject":
+                                msg.setSubject(h.getValue());
+                                break;
+                            case "Date":
+                                msg.setDate(h.getValue());
+                                break;
+                            default:
+                                break;
+                        }
 
-                // build Message Body as a Plain Text
-                if (payload.getParts() != null) {
-                    StringBuilder sb = new StringBuilder();
-                    for (MessagePart msgPart : payload.getParts())
-                        if (msgPart.getMimeType().contains("text/plain"))
-                            sb.append(new String(Base64.decodeBase64(msgPart.getBody().getData())));
-                    msg.setContent(sb.toString());
-                } else
-                    msg.setContent(my.getSnippet());
+                    // build Message Body as a Plain Text
+                    if (payload.getParts() != null) {
+                        StringBuilder sb = new StringBuilder();
+                        for (MessagePart msgPart : payload.getParts())
+                            if (msgPart.getMimeType().contains("text/plain"))
+                                sb.append(new String(Base64.decodeBase64(msgPart.getBody().getData())));
+                        msg.setContent(sb.toString());
+                    } else
+                        msg.setContent(my.getSnippet());
 
-                results.add(msg);
+                    results.add(msg);
+                }
             }
-        }
 
-        return results;
+            return results;
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 }
 
