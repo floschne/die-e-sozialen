@@ -310,6 +310,7 @@ const promises: [Promise<{ keys: Array<openpgp.key.Key>, err: Array<Error> | nul
   openpgp.message.fromText(testMessage)
 ];
 
+
 Promise.all(promises).then(function (values) {
   const keyObject: openpgp.key.KeyResult = values[0];
   const pgpMessage: openpgp.message.Message = values[1];
