@@ -19,9 +19,6 @@ public class MapInformation {
     private String id;
     @JacksonXmlProperty(localName = "name")
     private String name;
-    @JacksonXmlProperty(localName = "geom")
-    @JacksonXmlElementWrapper(useWrapping = false)
-    private Point geom;
     @JacksonXmlProperty(localName = "strasse")
     private String Strasse;
     @JacksonXmlProperty(localName = "ort")
@@ -32,4 +29,7 @@ public class MapInformation {
     private String Extra1;
     @JacksonXmlProperty(localName = "teilnahme_geburtsklinik")
     private String Extra2;
+    @JacksonXmlProperty(localName = "geom")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private Point geom;
 }

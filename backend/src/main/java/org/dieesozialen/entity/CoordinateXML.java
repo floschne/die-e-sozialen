@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.osgeo.proj4j.*;
 
 @Data
 @AllArgsConstructor
@@ -24,10 +25,19 @@ public class CoordinateXML {
         String[] parts = coordinates.split(" ");
         String part1 = parts[0];
         String part2 = parts[1];
-        double longitude = Double.parseDouble(part1);
-        double latitude = Double.parseDouble(part2);
-        Coordinates coord = new Coordinates(longitude,latitude);
+        double latEPSG = Double.parseDouble(part1);
+        double lonEPSG = Double.parseDouble(part2);
 
+        CRSFactory factory = new CRSFactory();
+        CoordinateReferenceSystem srcCrs = factory.createFromName("EPSG:25832");
+        CoordinateReferenceSystem outCrs = factory.createFromName("EPSG:4326");
+
+        CoordinateTransform transformation = new BasicCoordinateTransform(srcCrs, outCrs);
+
+        ProjCoordinate input = new ProjCoordinate(latEPSG, lonEPSG);
+        ProjCoordinate result = new ProjCoordinate();
+        transformation.transform(input, result);
+        Coordinates coord = new Coordinates(result.x,result.y);
         return coord;
     }
 }
