@@ -1,6 +1,9 @@
 package org.dieesozialen.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
@@ -8,15 +11,14 @@ import org.springframework.data.redis.core.index.Indexed;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
-@RedisHash("authority")
-public class Authority {
+@RedisHash("help")
+public class OfferedHelp {
 
     @Indexed
     private String id;
 
-    private String name;
+    private Person offerer;
+    private String period;
     private String description;
-
-    private Address address;
 }
+

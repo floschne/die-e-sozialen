@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ResourcesProvider } from '../../providers/resources/resources';
 
 /**
  * Generated class for the InformationenPage page.
@@ -15,11 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class InformationenPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  authorities: JSON;
+
+  constructor(public resources: ResourcesProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InformationenPage');
+    this.resources.getAuthorities().subscribe((res) => {
+      this.authorities = res;
+      console.log(res);
+    });
   }
 
 }

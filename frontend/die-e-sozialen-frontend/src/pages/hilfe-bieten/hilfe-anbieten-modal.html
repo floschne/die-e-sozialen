@@ -1,0 +1,56 @@
+<form #form="ngForm" (ngSubmit)="processForm(form.value)" *ngIf="!success">
+        <div padding>
+  
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>Person</ion-label>
+            </ion-item-divider>
+  
+            <ion-item>
+              <ion-input name="forename" type="text" placeholder="Vorname" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="surname" type="text" placeholder="Nachname" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="age" type="number" placeholder="Alter" ngModel></ion-input>
+            </ion-item>
+  
+            <ion-item>
+              <ion-input name="street" type="text" placeholder="Strasse" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="zip" type="text" placeholder="Postleitzahl" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="phoneNumber" type="text" placeholder="Telefonnummer" ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="city" type="text" placeholder="Stadt" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="mail" type="text" placeholder="EMail" ngModel required></ion-input>
+            </ion-item>
+  
+          </ion-item-group>
+  
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>Hilfestellung</ion-label>
+            </ion-item-divider>
+  
+            <ion-item>
+              <ion-textarea name="description" placeholder="Beschreibung der Hilfestellung" ngModel
+                            required></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-input name="period" type="text" placeholder="Zeitraum" ngModel required></ion-input>
+            </ion-item>
+          </ion-item-group>
+  
+        </div>
+        <div padding>
+          <button ion-button type="submit" [disabled]="form.invalid" expand="block">Absenden!</button>
+        </div>
+      </form>
+      <div *ngIf="success" class="alert alert-success" role="alert">{{this.offerID}}</div>

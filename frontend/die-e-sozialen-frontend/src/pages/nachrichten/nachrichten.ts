@@ -1,3 +1,5 @@
+var openpgp = require('../../assets/scripts/openpgp.min');
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading, Modal, Form } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
@@ -5,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { AuthProvider } from '../../providers/auth/auth';
-import openpgp from 'openpgp'
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 // /**
 //  * Generated class for the NeuigkeitenPage page.
@@ -75,6 +77,7 @@ export class ModalContentPage {
 
   ionViewDidLoad() {
     this.message = this.navParams.get('message');
+ 
 
     const testMessage = `-----BEGIN PGP MESSAGE-----
     Version: OpenPGP v2.0.8
@@ -89,10 +92,9 @@ export class ModalContentPage {
     VCoBGV7MvoV/GjdkncgBIPAM/mCloorpg3OvluL3wcXS2dhS8OHQaMQNtmqnlBj9
     u0nZDSNGLHIYHQ==
     =9J2+
-    -----END PGP MESSAGE-----
-    `
+    -----END PGP MESSAGE-----`
 
-    const pubkey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+    const pubkey = [`-----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: OpenPGP v2.0.8
     Comment: https://sela.io/pgp/
     
@@ -167,7 +169,8 @@ export class ModalContentPage {
     fl8JJch5ngF61SNnf8Vzodul2ZhzmIE7eYaQ52XyTHAWi7MERkpGYAXSwXYwsyUG
     HRJN1yKoZUEpxuy/
     =a88o
-    -----END PGP PUBLIC KEY BLOCK-----`
+    -----END PGP PUBLIC KEY BLOCK-----
+    `]
 const privkey = `-----BEGIN PGP PRIVATE KEY BLOCK-----
 Version: OpenPGP v2.0.8
 Comment: https://sela.io/pgp/
@@ -301,19 +304,27 @@ eZ4BetUjZ3/Fc6HbpdmYc5iBO3mGkOdl8kxwFouzBEZKRmAF0sF2MLMlBh0STdci
 qGVBKcbsvw==
 =wtmD
 -----END PGP PRIVATE KEY BLOCK-----`
-const passphrase = `code19` //what the privKey is encrypted with
+const passphrase = 'code19' //what the privKey is encrypted with
+var privKeyObj;
 
-openpgp.message.readArmored(testMessage).then((pgpMessage) => {
-  const options = {
-      message: pgpMessage,
-      passphrase: 'code19'
-  };
-  return openpgp.decrypt(options);
-}).then((plaintext) => {
-  console.log(plaintext)
-}).catch((error) => {
-  console.log(error)
-});
+openpgp.key.readArmored(privkey).then((res) => {
+   privKeyObj = res.keys[0];
+   var pubkeys = pubkey.map(async (key) => {
+     return (await openpgp.key.readArmored(key)).keys[0]
+   });
+   
+   const options = {
+       message: openpgp.message.fromText(testMessage),
+       publicKeys: pubkeys,           				  // for encryption
+       privateKeys: [privKeyObj]                                 // for signing (optional)
+   }
+   
+   return openpgp.encrypt(options).then(ciphertext => {
+       console.log(ciphertext);
+       return null // '-----BEGIN PGP MESSAGE ... END PGP MESSAGE-----'
+   })
+})
+
 
 }
 

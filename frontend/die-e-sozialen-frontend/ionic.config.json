@@ -22,6 +22,14 @@
     {
       "path": "/getMessages",
       "proxyUrl": "http://localhost:8080/getMessages"
+    },
+    {
+      "path": "/getAuthorities",
+      "proxyUrl": "http://localhost:8080/getAuthorities"
+    },
+    {
+      "path": "/offerHelp",
+      "proxyUrl": "http://localhost:8080/offerHelp"
     }
   ]
 }
