@@ -23,6 +23,8 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class NachrichtenPage {
   loggedIn: boolean = this.authProvider.loggedIn;
+  loginInProcess: boolean = false;
+  decryptMessage: string = 'Deine Nachrichten werden entschlüsselt';
 
   messages: JSON;
   constructor(
@@ -38,6 +40,7 @@ export class NachrichtenPage {
     var resources = new ResourcesProvider(this.httpClient);
     resources.getMessages().subscribe(response => {
       this.messages = response;
+      console.log(response);
     })
   }
 
@@ -49,8 +52,14 @@ export class NachrichtenPage {
   }
 
   login(form: Form) {
+
     console.log(form);
-    this.authProvider.login('testUser');
+    this.loginInProcess = true;
+
+    setTimeout( () => {
+      this.loginInProcess = false;
+      this.authProvider.login('testUser');
+    }, 5000);
   }
 
   ngDoCheck() {

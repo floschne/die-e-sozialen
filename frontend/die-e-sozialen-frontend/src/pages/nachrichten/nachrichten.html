@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content padding>
-    <div *ngIf="!loggedIn">
+    <div *ngIf="!loggedIn && !loginInProcess">
       <div class="panel panel-info">
           <div class="panel-heading">
             Geschützter Bereich
@@ -34,8 +34,23 @@
           </div>
       </form>
     </div>
+
+    <div *ngIf="loginInProcess" class="center-content">
+        <div class="atom-spinner">
+            <div class="spinner-inner">
+              <div class="spinner-line"></div>
+              <div class="spinner-line"></div>
+              <div class="spinner-line"></div>
+              <!--Chrome renders little circles malformed :(-->
+              <div class="spinner-circle">
+                &#9679;
+              </div>
+            </div>
+          </div>
+          <p class="decryptMessage">{{decryptMessage}}</p>
+    </div>
   
-    <ion-list *ngIf="loggedIn">
+    <ion-list *ngIf="loggedIn && !loginInProcess">
       <ion-list-header>
         <h1>Messages</h1>
       </ion-list-header>
