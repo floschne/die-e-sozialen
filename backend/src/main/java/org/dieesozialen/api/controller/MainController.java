@@ -2,6 +2,7 @@ package org.dieesozialen.api.controller;
 
 
 import io.swagger.annotations.Api;
+import org.dieesozialen.api.respones.OfferHelpResponse;
 import org.dieesozialen.api.respones.PlainStringResponse;
 import org.dieesozialen.db.repos.QuoteRepo;
 import org.dieesozialen.entity.*;
@@ -110,13 +111,18 @@ public class MainController {
         return new OfferHelpResponse(this.offerHelpService.offerHelp(help));
     }
 
-    @RequestMapping(value = "/showHelp", method = RequestMethod.GET)
-    public List<OfferedHelp> showHelp() {
-        return this.offerHelpService.showHelp();
+    @RequestMapping(value = "/getHelp", method = RequestMethod.GET)
+    public List<OfferedHelp> getHelp() {
+        return this.offerHelpService.getHelp();
     }
 
     @RequestMapping(value = "/deleteHelp/{id}", method = RequestMethod.DELETE)
     public Boolean deleteHelp(@PathVariable String id) {
         return this.offerHelpService.deleteHelp(id);
+    }
+
+    @RequestMapping(value = "/flushHelp", method = RequestMethod.DELETE)
+    public void flushHelp() {
+        this.offerHelpService.flushHelp();
     }
 }

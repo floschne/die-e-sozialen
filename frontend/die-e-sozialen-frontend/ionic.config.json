@@ -30,6 +30,10 @@
     {
       "path": "/offerHelp",
       "proxyUrl": "http://localhost:8080/offerHelp"
+    },
+    {
+      "path": "/getHelp",
+      "proxyUrl": "http://localhost:8080/getHelp"
     }
   ]
 }
