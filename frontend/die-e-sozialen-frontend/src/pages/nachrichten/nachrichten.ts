@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> interactivemap
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading, Modal, Form } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
