@@ -51,11 +51,15 @@
     </div>
   
     <ion-list *ngIf="loggedIn && !loginInProcess">
-      <ion-list-header>
-        <h1>Messages</h1>
-      </ion-list-header>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+              Hier kannst du deine Nachrichten einsehen!
+            </div>
+        </div>
       <ion-item *ngFor="let message of messages" (click)="openModal(message)">
-       <p class="nachrichten-class">{{message.subject}}</p> 
+       <p class="nachrichten-class">
+        <ion-icon name="ios-arrow-dropright-circle" style="position: fixed; left: 0px;"></ion-icon> 
+        {{message.subject}}</p> 
       </ion-item>
     </ion-list>
   </ion-content>
