@@ -28,14 +28,14 @@
           <li class="list-group-item" *ngIf="authority.description">
             {{authority.description}}
           </li>
-          <li class="list-group-item" *ngIf="authority.phoneNumber">
-              {{authority.phoneNumber}}
+          <li class="list-group-item" *ngIf="authority.address.phoneNumber">
+              {{authority.address.phoneNumber}}
           </li>
-            <li class="list-group-item" *ngIf="authority.mail">
-                {{authority.mail}}
+            <li class="list-group-item" *ngIf="authority.address.mail">
+                {{authority.address.mail}}
             </li>
-            <li class="list-group-item" *ngIf="authority.street || authority.city">
-                {{authority.street}} {{authority.zip}}, {{authority.city}}
+            <li class="list-group-item" *ngIf="authority.address.street || authority.address.city">
+                {{authority.address.street}} {{authority.address.zip}}, {{authority.address.city}}
             </li>
             </ul>
             <button *ngIf="!isCollapsed[i]" class="btn btn-primary pull-right margin-bottom-small" type="button" (click)="isCollapsed[i] = !isCollapsed[i]" aria-expanded="false" aria-controls="collapseExample">

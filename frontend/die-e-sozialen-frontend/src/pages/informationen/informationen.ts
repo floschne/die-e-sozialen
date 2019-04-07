@@ -28,6 +28,7 @@ export class InformationenPage {
         this.isCollapsed[i] = true;
       }
       this.authorities = res;
+      console.log(res);
     });
   }
 
