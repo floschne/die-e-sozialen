@@ -21,6 +21,7 @@ export class KartePage {
   map: Map;
   maxzoom: 18;
   places: JSON;
+  location: boolean;
   medMarkers: Array<Marker>;
   bedMarkers: Array<Marker>;
 
@@ -36,23 +37,26 @@ export class KartePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad KartePage');
-    this.initializeMap(); 
+    this.initializeMap();
     this.medMarkers = [];
     this.bedMarkers = [];
+    this.location = false;
 
   }
 
   initializeMap() {
     this.map = new Map('mapid').setView([53.599482, 9.93353435970931], 13);
+
     this.map.locate({
       setView: true,
       maxZoom: this.maxzoom
     }).on('locationfound', (e) => {
-      console.log("Hab Dich!");
-      console.log(this.map.getCenter());
       this.setMarker('loc', this.map.getCenter(), true, 'Ihr Standort')
+      this.location = true;
     })  
-
+    if (!location) {
+      this.setMarker('loc', this.map.getCenter(), true, 'Ihr Standort')
+    }
     var lat = this.map.getCenter().lat;
     var lng = this.map.getCenter().lng;
     //console.log(proj4('EPSG:25832', 'GOOGLE', [lat, lng]));
@@ -77,7 +81,7 @@ export class KartePage {
       iconAnchor: [22, 45],
       popupAnchor: [0, -45]
     });
-
+    
     var marker = new Marker(coords, {icon: markerIcon}).addTo(this.map);
     marker.bindPopup(popuptext);
 
@@ -87,6 +91,7 @@ export class KartePage {
     if(type == "bed") {
       this.bedMarkers.push(marker)
     }
+
 
     if (popup) {
       marker.openPopup();  
