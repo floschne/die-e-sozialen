@@ -57,7 +57,7 @@
             </div>
         </div>
       <ion-item *ngFor="let message of messages" (click)="openModal(message)">
-       <p class="nachrichten-class">
+       <p class="nachrichten-class" style="text-align: left; word-wrap: break-word;">
         <ion-icon name="ios-arrow-dropright-circle" style="position: fixed; left: 0px;"></ion-icon> 
         {{message.subject}}</p> 
       </ion-item>
