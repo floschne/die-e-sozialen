@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -71,7 +72,8 @@ public class MainController {
 
     @RequestMapping(value = "/getMessages", method = RequestMethod.GET)
     public List<Message> getMessages() throws GeneralSecurityException, IOException {
-        return this.gMailService.getMessages();
+        //return this.gMailService.getMessages();
+        return dummyMessages();
     }
 
     @RequestMapping(value = "/getAuthorities", method = RequestMethod.GET)
@@ -106,5 +108,29 @@ public class MainController {
     @RequestMapping(value = "/flushHelp", method = RequestMethod.DELETE)
     public void flushHelp() {
         this.offerHelpService.flushHelp();
+    }
+
+    private List<Message> dummyMessages() {
+        List<Message> messages = new ArrayList<>();
+
+        messages.add(Message.builder()
+                .sender("Job Center Hamburg-Mitte")
+                .receiver("Ich")
+                .subject("Termin am Donnerstag")
+                .date("3. April 2019")
+                .content("Hallo Mr. X! Bitte kommen Sie ran!")
+                .build()
+        );
+
+        messages.add(Message.builder()
+                .sender("Tafel Hamburg")
+                .receiver("Ich")
+                .subject("Am Montag gibts Falafel")
+                .date("2. April 2019")
+                .content("Hallo Frau Vensu! Lecker schmecker!")
+                .build()
+        );
+
+        return messages;
     }
 }
