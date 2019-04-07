@@ -11,6 +11,6 @@ import lombok.ToString;
 @ToString
 
 public class Coordinates {
-    private Double longitude;
     private Double latitude;
+    private Double longitude;
 }
