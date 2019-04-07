@@ -26,7 +26,7 @@ crossorigin=""></script>
     <!-- Checkboxes in a List -->
     <ion-list no-lines class="verticallist">
       <ion-item *ngFor="let entry of form" >
-        <ion-label>{{entry.val}}</ion-label>
+        <ion-label><p text-wrap class="nachrichten-class">{{entry.val}}</p></ion-label>
         <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="selectChange()"></ion-checkbox>
       </ion-item>
     </ion-list>
