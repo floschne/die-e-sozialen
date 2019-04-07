@@ -1,4 +1,4 @@
-var openpgp = require('../../assets/scripts/openpgp.min');
+//var openpgp = require('../../assets/scripts/openpgp.min');
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading, Modal, Form } from 'ionic-angular';
@@ -8,6 +8,8 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+//import openpgp from 'openpgp'
+import * as openpgp from 'openpgp'
 
 // /**
 //  * Generated class for the NeuigkeitenPage page.
@@ -66,7 +68,6 @@ export class ModalContentPage {
   loading: boolean = false;
 
   constructor(
-    private fileEncryption: FileEncryption,
     public platform: Platform,
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -78,7 +79,6 @@ export class ModalContentPage {
   ionViewDidLoad() {
     this.message = this.navParams.get('message');
  
-
     const testMessage = `-----BEGIN PGP MESSAGE-----
     Version: OpenPGP v2.0.8
     Comment: https://sela.io/pgp/
@@ -305,26 +305,32 @@ qGVBKcbsvw==
 =wtmD
 -----END PGP PRIVATE KEY BLOCK-----`
 const passphrase = 'code19' //what the privKey is encrypted with
-var privKeyObj;
 
-openpgp.key.readArmored(privkey).then((res) => {
-   privKeyObj = res.keys[0];
-   var pubkeys = pubkey.map(async (key) => {
-     return (await openpgp.key.readArmored(key)).keys[0]
-   });
-   
-   const options = {
-       message: openpgp.message.fromText(testMessage),
-       publicKeys: pubkeys,           				  // for encryption
-       privateKeys: [privKeyObj]                                 // for signing (optional)
-   }
-   
-   return openpgp.encrypt(options).then(ciphertext => {
-       console.log(ciphertext);
-       return null // '-----BEGIN PGP MESSAGE ... END PGP MESSAGE-----'
-   })
-})
+openpgp.initWorker({path: '/assets/scripts/openpgp.worker.min.js'})
+console.log(openpgp)
 
+const promises: [Promise<{ keys: Array<openpgp.key.Key>, err: Array<Error> | null }>, Promise<openpgp.message.Message>] = [
+  openpgp.key.readArmored(privkey),
+  openpgp.message.fromText(testMessage)
+];
+
+Promise.all(promises).then(function (values) {
+  const keyObject: openpgp.key.KeyResult = values[0];
+  const pgpMessage: openpgp.message.Message = values[1];
+  const privateKey = keyObject.keys[0];
+  
+  privateKey.decrypt('code19');
+  
+  const options = {
+      privateKeys: privateKey,
+      message: pgpMessage
+  };
+  return openpgp.decrypt(options);
+}).then(function (plaintext) {
+  console.log(plaintext)
+}).catch(function (error) {
+  console.log(error)
+});
 
 }
 
