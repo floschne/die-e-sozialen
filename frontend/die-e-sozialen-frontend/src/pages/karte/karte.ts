@@ -4,7 +4,6 @@ import { Map, latLng, tileLayer, Layer, Marker, Icon, Circle, Polygon, LatLng } 
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 
-
 /**
  * Generated class for the KartePage page.
  *
@@ -36,8 +35,7 @@ export class KartePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad KartePage');
 
-    this.initializeMap(); 
-
+    this.initializeMap();
   }
 
   initializeMap() {
@@ -50,6 +48,10 @@ export class KartePage {
       console.log(this.map.getCenter());
       this.setMarker('loc', this.map.getCenter(), true, 'Ihr Standort')
     })  
+
+    var lat = this.map.getCenter().lat;
+    var lng = this.map.getCenter().lng;
+    //console.log(proj4('EPSG:25832', 'GOOGLE', [lat, lng]));
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       // tslint:disable-next-line
@@ -88,16 +90,39 @@ export class KartePage {
 
     if (this.form[0].isChecked) {
       resources.getMapContent("hospital").subscribe(response => {
-        this.places = response;
+            
+        for (let place of response) {
+          console.log(place.name);
+          console.log(place);
+
+          let popupText = place.name + '<br>' + 
+                          place.extra1 + '<br>' +
+                          place.extra2 + '<br>' +
+                          place.web;
+
+          this.setMarker("med", new LatLng(place.coordinates.longitude, place.coordinates.latitude), false, popupText);
+          
+        }
         
-        console.log(response[0].name)
-        //this.setMarker("med", [response.longitude, response.latitude], true, response.name)
-        console.log(this.places)
       })
     }
 
     if (this.form[1].isChecked) {
+      resources.getMapContent("shelter").subscribe(response => {
+            
+        for (let place of response) {
+          console.log(place.name);
+          console.log(place);
+          let popupText = place.name + '<br>' + 
+                          place.extra1 + '<br>' +
+                          place.extra2 + '<br>' +
+                          place.web;
 
+          this.setMarker("bed", new LatLng(place.coordinates.longitude, place.coordinates.latitude), false, popupText);
+          
+        }
+        
+      })
     }
 
   }

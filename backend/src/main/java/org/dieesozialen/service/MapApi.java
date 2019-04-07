@@ -26,8 +26,12 @@ public class MapApi {
     public List<MapInformation> getMapInformation(String type) {
         List<MapInformation> infoList = new ArrayList<MapInformation>();
         if (type.equals("hospital")) {
-            MapInformation info = new MapInformation(231, "UKE", new Coordinates(125.25, 32165413.22), "Diese Straße", "Jener Ort", "DatWebAdress", "ExtraN1", "ExtraN2");
+            MapInformation info = new MapInformation(231, "UKE", new Coordinates(53.25, 10.22), "Diese Straße", "Jener Ort", "DatWebAdress", "ExtraN1", "ExtraN2");
             infoList.add(info);
+			MapInformation info1 = new MapInformation(231, "UKE", new Coordinates(54.05, 9.22), "Diese Straße", "Jener Ort", "DatWebAdress", "ExtraN1", "ExtraN2");
+            infoList.add(info1);
+			MapInformation info2 = new MapInformation(231, "UKE", new Coordinates(567708.612, 5941076.513), "Diese Straße", "Jener Ort", "DatWebAdress", "ExtraN1", "ExtraN2");
+            infoList.add(info2);
         } else if (type.equals("shelter")) {
             MapInformation info = new MapInformation(231, "Studentenwohnheim", new Coordinates(125.25, 32165413.22), "Diese Straße", "Jener Ort", "DatWebAdress", "ExtraN1", "ExtraN2");
             infoList.add(info);
