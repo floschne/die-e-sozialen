@@ -43,7 +43,7 @@ export class KartePage {
   }
 
   initializeMap() {
-    this.map = new Map('mapid').setView([51.505, -0.09], 13);
+    this.map = new Map('mapid').setView([53.599482, 9.93353435970931], 13);
     this.map.locate({
       setView: true,
       maxZoom: this.maxzoom
