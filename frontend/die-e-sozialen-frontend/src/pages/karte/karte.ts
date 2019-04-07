@@ -25,7 +25,7 @@ export class KartePage {
   bedMarkers: Array<Marker>;
 
   public form = [
-    { val: 'Medizinische Versorgung', isChecked: false },
+    { val: 'Med. Versorgung', isChecked: false },
     { val: 'Notunterkünfte', isChecked: false }
   ];
 
