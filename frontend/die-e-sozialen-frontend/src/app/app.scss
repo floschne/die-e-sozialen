@@ -19,8 +19,8 @@ ion-title {
     text-align: center;
 }
 
-#mapid {height: 92%;}
-.mapmenu {height: 8%;}
+#mapid {height: 90%;}
+.mapmenu {height: 10%;}
 .mapselect {float: left;}
 .verticallist {display: flex; flex-direction: row}
 
@@ -54,14 +54,6 @@ ion-spinner * {
 
 ion-card-title {
     word-wrap: break-word;
-
-  // ion-item * {
-  //   white-space: normal;
-  //   float: left;
-  //   width: inherit;
-  //   height: auto;
-  //   word-wrap: break-word;
-  // }
 
   .panel-heading {
     text-align: center;
