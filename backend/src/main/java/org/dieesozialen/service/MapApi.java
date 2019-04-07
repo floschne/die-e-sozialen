@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
+import org.dieesozialen.entity.CoordinateXML;
 import org.dieesozialen.entity.Coordinates;
 import org.dieesozialen.entity.HospitalXML;
 import org.dieesozialen.entity.MapInformation;
@@ -44,20 +45,39 @@ public class MapApi {
             XMLStreamReader sr = f.createXMLStreamReader(inputFile.openStream());
 
             XmlMapper mapper = new XmlMapper();
-            sr.next(); // to point to <root>
-            sr.next(); // to point to root-element under root
-            sr.next(); // to point to root-element under root
+            //sr.next(); // to point to <root>
+            //sr.next(); // to point to root-element under root
+            //sr.next(); // to point to root-element under root
             while(sr.hasNext()){
                 sr.next();
-                MapInformation info = mapper.readValue(sr, MapInformation.class);
-                infoList.add(info);
+                if(sr.getEventType() == XMLStreamReader.START_ELEMENT && sr.getLocalName().equals("featureMember")){
+                   //From here on cycly in on feature Memeber
+                    sr.next();
+                    MapInformation info = mapper.readValue(sr, MapInformation.class);
+                    infoList.add(info);
+                }
+                /*if(sr.getEventType() == XMLStreamReader.START_ELEMENT && sr.getLocalName().equals("geom")){
+                    //From here on cycly in on feature Memeber
+                    sr.next();
+                    CoordinateXML coords = mapper.readValue(sr, CoordinateXML.class);
+                    System.out.println(coords);
+                    //coords.getCoordinates()
+                    //infoList.;
+                }*/
+                //System.out.println(infoList);
+                /*if(sr.getEventType() == XMLStreamReader.ATTRIBUTE){
+                    System.out.println(sr.getLocalName());
+                }*/
+                //MapInformation info = mapper.readValue(sr, MapInformation.class);
+                //infoList.add(info);
             }
+
             sr.close();
 
         }
         else if (type.equals("shelter")){
-            MapInformation info = new MapInformation("krankenhaus1","Studentenwohnheim", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
-            infoList.add(info);
+            //MapInformation info = new MapInformation("krankenhaus1","Studentenwohnheim", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
+           // infoList.add(info);
         }
         else{
             MapInformation info = new MapInformation();

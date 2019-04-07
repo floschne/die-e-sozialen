@@ -1,6 +1,7 @@
 package org.dieesozialen.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +19,9 @@ public class MapInformation {
     private String id;
     @JacksonXmlProperty(localName = "name")
     private String name;
-    @JacksonXmlProperty(localName = "pos")
-    private Coordinates coordinates;
+    @JacksonXmlProperty(localName = "geom")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private Point geom;
     @JacksonXmlProperty(localName = "strasse")
     private String Strasse;
     @JacksonXmlProperty(localName = "ort")
