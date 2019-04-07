@@ -128,17 +128,26 @@ export class KartePage {
             
         for (let place of response) {
           console.log(place.name);
-          console.log(place);
+          console.log(place.geom.point.coordinates.latitude);
+
           let popupText = place.name + '<br>' + 
-                          place.extra1 + '<br>' +
-                          place.extra2 + '<br>' +
+                          "Organisation: " + place.extra1 + '<br>' +
+                          "Ansprechpartner: " + place.extra2 + '<br>' +
                           place.web;
 
-          this.setMarker("bed", new LatLng(place.coordinates.longitude, place.coordinates.latitude), false, popupText);
+          this.setMarker("bed", new LatLng(place.geom.point.coordinates.longitude, 
+                                           place.geom.point.coordinates.latitude), false, popupText);
+      
           
         }
         
       })
+    }
+    if (!this.form[0].isChecked) {
+      this.bedMarkers.forEach(element => {
+        this.map.removeLayer(element);
+      });
+      this.bedMarkers = [];
     }
 
   }
