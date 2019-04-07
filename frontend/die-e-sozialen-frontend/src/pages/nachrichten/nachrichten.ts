@@ -43,8 +43,6 @@ export class NachrichtenPage {
   }
 
   openModal(message) {
-
-    console.log(message);
     let modal = this.modalCtrl.create(ModalContentPage, {message: message});
     modal.present();
   }

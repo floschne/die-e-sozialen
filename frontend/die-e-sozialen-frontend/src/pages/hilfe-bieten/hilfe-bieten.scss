@@ -26,4 +26,11 @@ page-hilfe-bieten {
     right: 10px;
   }
 
+  .phil-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
