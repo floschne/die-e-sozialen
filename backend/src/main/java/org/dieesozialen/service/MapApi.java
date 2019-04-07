@@ -1,16 +1,13 @@
 package org.dieesozialen.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.dieesozialen.entity.MapInformation;
+import org.dieesozialen.entity.MapInformationHospital;
+import org.dieesozialen.entity.MapInformationInterface;
+import org.dieesozialen.entity.MapInformationShelter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.osgeo.proj4j.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,37 +30,44 @@ public class MapApi {
         this.restTemplate = new RestTemplate();
     }
 
-    public List<MapInformation> getMapInformation(String type) throws IOException, XMLStreamException {
-        List<MapInformation> infoList = new ArrayList<MapInformation>();
+    public List<MapInformationInterface> getMapInformation(String type) throws IOException, XMLStreamException {
+        List<MapInformationInterface> infoList = new ArrayList<MapInformationInterface>();
         if(type.equals("hospital")){
-            //MapInformation info = new MapInformation(231,"UKE", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
-            //infoList.add(info);
-
             XMLInputFactory f = XMLInputFactory.newFactory();
             URL inputFile = new URL(urlHospital);
             XMLStreamReader sr = f.createXMLStreamReader(inputFile.openStream());
 
             XmlMapper mapper = new XmlMapper();
-            //sr.next(); // to point to <root>
-            //sr.next(); // to point to root-element under root
-            //sr.next(); // to point to root-element under root
             while(sr.hasNext()){
                 sr.next();
                 if(sr.getEventType() == XMLStreamReader.START_ELEMENT && sr.getLocalName().equals("featureMember")){
                    //From here on cycly in on feature Memeber
                     sr.next();
-                    MapInformation info = mapper.readValue(sr, MapInformation.class);
+                    MapInformationHospital info = mapper.readValue(sr, MapInformationHospital.class);
                     infoList.add(info);
                 }
             }
             sr.close();
         }
         else if (type.equals("shelter")){
-           // MapInformation info = new MapInformation("krankenhaus1","Studentenwohnheim", new Coordinates(125.25,32165413.22),"Diese Straße","Jener Ort","DatWebAdress","ExtraN1","ExtraN2");
-           // infoList.add(info);
+            XMLInputFactory f = XMLInputFactory.newFactory();
+            URL inputFile = new URL(urlShelter);
+            XMLStreamReader sr = f.createXMLStreamReader(inputFile.openStream());
+
+            XmlMapper mapper = new XmlMapper();
+            while(sr.hasNext()){
+                sr.next();
+                if(sr.getEventType() == XMLStreamReader.START_ELEMENT && sr.getLocalName().equals("featureMember")){
+                    //From here on cycly in on feature Memeber
+                    sr.next();
+                    MapInformationShelter info = mapper.readValue(sr, MapInformationShelter.class);
+                    infoList.add(info);
+                }
+            }
+            sr.close();
         }
         else{
-            MapInformation info = new MapInformation();
+            MapInformationHospital info = new MapInformationHospital();
             infoList.add(info);
         }
         return infoList;
