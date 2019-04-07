@@ -11,25 +11,36 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card *ngFor="let authority of authorities">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+          Hier findest du Hilfe in allen Bereichen!
+        </div>
+    </div>
+    <ion-card *ngFor="let authority of authorities; let i = index">
       <ion-card-header>
         <ion-card-title text-wrap>{{authority.name}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-list text-wrap>
-          <ion-item *ngIf="authority.description">
+        <button *ngIf="isCollapsed[i]" class="btn btn-primary pull-right margin-bottom-small" type="button" (click)="isCollapsed[i] = !isCollapsed[i]" aria-expanded="false" aria-controls="collapseExample">
+          Mehr...
+        </button>
+        <ul class="list-group" text-wrap [collapse]="isCollapsed[i]">
+          <li class="list-group-item" *ngIf="authority.description">
             {{authority.description}}
-          </ion-item>
-          <ion-item *ngIf="authority.phoneNumber">
-              {{authority.phoneNumber}}
-            </ion-item>
-            <ion-item *ngIf="authority.mail">
-                {{authority.mail}}
-              </ion-item>
-            <ion-item *ngIf="authority.street || authority.city">
-                {{authority.street}} {{authority.zip}}, {{authority.city}}
-              </ion-item>
-        </ion-list>
+          </li>
+          <li class="list-group-item" *ngIf="authority.address.phoneNumber">
+              {{authority.address.phoneNumber}}
+          </li>
+            <li class="list-group-item" *ngIf="authority.address.mail">
+                {{authority.address.mail}}
+            </li>
+            <li class="list-group-item" *ngIf="authority.address.street || authority.address.city">
+                {{authority.address.street}} {{authority.address.zip}}, {{authority.address.city}}
+            </li>
+            </ul>
+            <button *ngIf="!isCollapsed[i]" class="btn btn-primary pull-right margin-bottom-small" type="button" (click)="isCollapsed[i] = !isCollapsed[i]" aria-expanded="false" aria-controls="collapseExample">
+                Weniger...
+            </button>
       </ion-card-content>
       </ion-card>
 </ion-content>

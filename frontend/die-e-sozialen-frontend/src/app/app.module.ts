@@ -14,6 +14,11 @@ import {FileEncryption} from '@ionic-native/file-encryption/ngx';
 import {AuthProvider} from '../providers/auth/auth';
 import {NachrichtenPage, ModalContentPage} from '../pages/nachrichten/nachrichten';
 import {HilfeBietenPage, HilfeAnbietenModal} from "../pages/hilfe-bieten/hilfe-bieten";
+import { CollapseModule } from '../pages/collapse';
+import { AnimationBuilder } from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+
  
 @NgModule({
   declarations: [
@@ -25,11 +30,13 @@ import {HilfeBietenPage, HilfeAnbietenModal} from "../pages/hilfe-bieten/hilfe-b
     ModalContentPage,
     NachrichtenPage,
     HilfeBietenPage,
-    HilfeAnbietenModal
+    HilfeAnbietenModal,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    BrowserAnimationsModule,
+    CollapseModule,
     HttpClientModule,
   ],
   bootstrap: [IonicApp],
@@ -42,7 +49,7 @@ import {HilfeBietenPage, HilfeAnbietenModal} from "../pages/hilfe-bieten/hilfe-b
     ModalContentPage,
     NachrichtenPage,
     HilfeBietenPage,
-    HilfeAnbietenModal
+    HilfeAnbietenModal,
   ],
   providers: [
     StatusBar,
@@ -50,7 +57,9 @@ import {HilfeBietenPage, HilfeAnbietenModal} from "../pages/hilfe-bieten/hilfe-b
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ResourcesProvider,
     FileEncryption,
-    AuthProvider
+    AuthProvider,
+    BrowserAnimationsModule,
+    Clipboard
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

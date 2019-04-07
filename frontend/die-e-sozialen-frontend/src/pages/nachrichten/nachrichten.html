@@ -12,7 +12,14 @@
 
 <ion-content padding>
     <div *ngIf="!loggedIn">
-        <h2>Geschützter Bereich</h2>
+      <div class="panel panel-info">
+          <div class="panel-heading">
+            Geschützter Bereich
+          </div>
+          <div class="panel-body">
+            Logge Dich ein um deine verschlüsselten Nachrichten zu lesen.
+          </div>
+      </div>
       <form #form="ngForm" (ngSubmit)="login(form.value)">
           <div padding>
             <ion-item>
@@ -23,7 +30,7 @@
             </ion-item>
           </div>
           <div padding>
-            <button ion-button type="submit" [disabled]="form.invalid" expand="block">Login</button>
+            <button ion-button class="full-width" type="submit" [disabled]="form.invalid" expand="block">Login</button>
           </div>
       </form>
     </div>

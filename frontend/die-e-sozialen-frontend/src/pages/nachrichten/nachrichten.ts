@@ -1,5 +1,3 @@
-//var openpgp = require('../../assets/scripts/openpgp.min');
-
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading, Modal, Form } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
@@ -8,7 +6,6 @@ import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-//import openpgp from 'openpgp'
 import * as openpgp from 'openpgp'
 
 // /**
@@ -307,7 +304,6 @@ qGVBKcbsvw==
 const passphrase = 'code19' //what the privKey is encrypted with
 
 openpgp.initWorker({path: '/assets/scripts/openpgp.worker.min.js'})
-console.log(openpgp)
 
 const promises: [Promise<{ keys: Array<openpgp.key.Key>, err: Array<Error> | null }>, Promise<openpgp.message.Message>] = [
   openpgp.key.readArmored(privkey),

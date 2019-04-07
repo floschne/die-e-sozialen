@@ -23,10 +23,7 @@ export class KartePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad KartePage');
-
     this.initializeMap(); 
-
   }
 
   initializeMap() {

@@ -16,6 +16,7 @@ import { ResourcesProvider } from '../../providers/resources/resources';
 })
 export class InformationenPage {
 
+  isCollapsed: Array<any> = new Array();
   authorities: JSON;
 
   constructor(public resources: ResourcesProvider, public navCtrl: NavController, public navParams: NavParams) {
@@ -23,6 +24,9 @@ export class InformationenPage {
 
   ionViewDidLoad() {
     this.resources.getAuthorities().subscribe((res) => {
+      for(var i = 0; i < res.length; i++) {
+        this.isCollapsed[i] = true;
+      }
       this.authorities = res;
       console.log(res);
     });
