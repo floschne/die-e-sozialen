@@ -19,6 +19,11 @@ ion-title {
     text-align: center;
 }
 
+#mapid {height: 92%;}
+.mapmenu {height: 8%;}
+.mapselect {float: left;}
+.verticallist {display: flex; flex-direction: row}
+
 // ion-spinner {
 //     
 //     align-self: center;
@@ -49,21 +54,17 @@ ion-spinner * {
 
 ion-card-title {
     word-wrap: break-word;
-}
-  ion-item * {
-    white-space: normal;
-    float: left;
-    width: inherit;
-    height: auto;
-    word-wrap: break-word;
-  }
+
+  // ion-item * {
+  //   white-space: normal;
+  //   float: left;
+  //   width: inherit;
+  //   height: auto;
+  //   word-wrap: break-word;
+  // }
 
   .panel-heading {
     text-align: center;
-  }
-
-  .full-width {
-    width: 100%;
   }
 
   .nachrichten-class {
@@ -71,9 +72,7 @@ ion-card-title {
     text-align: left;
   }
 
-  .modal-wrapper {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+  .messages-class {
+    color: grey;
+  }
 }

@@ -17,20 +17,34 @@ import {HttpClient} from "@angular/common/http";
 })
 export class HilfeBietenPage {
 
-  offerID: any;
-  success: Boolean;
+  offers: JSON;
+  isCollapsed: Array<any> = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public httpClient: HttpClient,
+              public resources: ResourcesProvider,
               public modalCtr: ModalController) {
-    this.success = false;
-    this.offerID = "not yet set";
+  }
+
+  fetchOffers() {
+    this.resources.getHelp().subscribe((res) => {
+      this.offers = res;
+      for (let i = 0; i < res.length; i++) {
+        this.isCollapsed[i] = true;
+      }
+    });
+  }
+
+  ionViewDidLoad() {
+    this.fetchOffers();
   }
 
   openHilfeAnbietenModal() {
     let modal = this.modalCtr.create(HilfeAnbietenModal);
     modal.present();
+    modal.onDidDismiss(() => {
+      this.fetchOffers();
+    });
   }
 }
 
@@ -42,19 +56,17 @@ export class HilfeAnbietenModal {
   success: boolean = false;
 
   constructor(
-  public platform: Platform,
-  public navCtrl: NavController, 
-  public navParams: NavParams, 
-  public viewCtrl: ViewController,
-  public httpClient: HttpClient) {
+    public platform: Platform,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public resources: ResourcesProvider) {
 
-  }
-
-  ionViewDidLoad() {
   }
 
   processForm(value: any) {
     let offer = {
+      "title": value.title,
       "description": value.description,
       "offerer": {
         "address": {
@@ -71,12 +83,13 @@ export class HilfeAnbietenModal {
       "period": value.period,
     };
 
-    let resources = new ResourcesProvider(this.httpClient);
-    resources.postOffer(offer).subscribe(response => {
-      this.offerID = response;
+    this.resources.postOffer(offer).subscribe(res => {
+      this.offerID = res;
       this.success = true;
     });
   }
-  // modal has to be closed after the job is done
-  // this.viewCtrl.dismiss();
+
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
 }

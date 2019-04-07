@@ -28,7 +28,11 @@ public class OfferHelpService {
         } else return false;
     }
 
-    public List<OfferedHelp> showHelp() {
+    public List<OfferedHelp> getHelp() {
         return (List<OfferedHelp>) this.helpRepo.findAll();
+    }
+
+    public void flushHelp() {
+        this.helpRepo.deleteAll();
     }
 }

@@ -23,11 +23,19 @@ export class ResourcesProvider {
     return this.httpClient.get("/getMessages");
   }
 
+  public getMapContent(type): Observable<any> {
+    return this.httpClient.get("/getMapContent" + "?type=" + type);
+  }
+
   public getAuthorities(): Observable<any> {
-    return this.httpClient.get('/getAuthorities');
+    return this.httpClient.get("/getAuthorities");
   }
 
   public postOffer(offer: any): Observable<any> {
     return this.httpClient.post("/offerHelp", offer);
+  }
+
+  public getHelp(): Observable<any> {
+    return this.httpClient.get("/getHelp");
   }
 }

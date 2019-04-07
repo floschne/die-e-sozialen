@@ -16,10 +16,20 @@ crossorigin=""></script>
 <ion-header>
   <ion-navbar>
     <ion-title>Karte</ion-title>
-    <div id="mapid"></div>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <div id="mapid"> </div>
+
+  <div class="mapmenu">    
+    <!-- Checkboxes in a List -->
+    <ion-list no-lines class="verticallist">
+      <ion-item *ngFor="let entry of form" >
+        <ion-label><p text-wrap class="nachrichten-class">{{entry.val}}</p></ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="selectChange()"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
   
 </ion-content>

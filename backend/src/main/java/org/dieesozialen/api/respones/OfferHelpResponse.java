@@ -1,4 +1,4 @@
-package org.dieesozialen.entity;
+package org.dieesozialen.api.respones;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

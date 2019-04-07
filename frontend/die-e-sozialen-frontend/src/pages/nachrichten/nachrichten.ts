@@ -22,7 +22,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 export class NachrichtenPage {
   loggedIn: boolean = this.authProvider.loggedIn;
   loginInProcess: boolean = false;
-  decryptMessage: string = 'Deine Nachrichten werden entschlüsselt';
+  decryptMessage: string = 'Deine Nachrichten werden entschlüsselt.';
 
   messages: JSON;
   constructor(
