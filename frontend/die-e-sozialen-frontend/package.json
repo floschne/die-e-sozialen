@@ -47,7 +47,8 @@
   "cordova": {
     "plugins": {
       "cordova-safe": {},
-      "cordova-clipboard": {}
+      "cordova-clipboard": {},
+      "cordova-plugin-splashscreen": {}
     }
   }
 }

@@ -82,7 +82,6 @@ export class KartePage {
     marker.bindPopup(popuptext);
 
     if(type == "med") {
-      console.log("BIN HIER")
       this.medMarkers.push(marker);
     }
     if(type == "bed") {
@@ -97,22 +96,21 @@ export class KartePage {
   selectChange() {
     console.log("Geklickt")
     var resources = new ResourcesProvider(this.httpClient);
-
-    console.log(this.form[0].val)
-
     if (this.form[0].isChecked) {
       resources.getMapContent("hospital").subscribe(response => {
             
         for (let place of response) {
           console.log(place.name);
-          console.log(place);
+          console.log(place.geom.point.coordinates.latitude);
 
           let popupText = place.name + '<br>' + 
-                          place.extra1 + '<br>' +
-                          place.extra2 + '<br>' +
+                          "Notfallhilfe: " + place.extra1 + '<br>' +
+                          "Geburtsklinik: " + place.extra2 + '<br>' +
                           place.web;
 
-          this.setMarker("med", new LatLng(place.coordinates.longitude, place.coordinates.latitude), false, popupText);
+          this.setMarker("med", new LatLng(place.geom.point.coordinates.longitude, 
+                                           place.geom.point.coordinates.latitude), false, popupText);
+      
           
         }
         
