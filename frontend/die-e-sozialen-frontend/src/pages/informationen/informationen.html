@@ -11,25 +11,36 @@
 </ion-header>
 
 <ion-content padding>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+          Hier findest du Hilfe in allen Bereichen!
+        </div>
+    </div>
     <ion-card *ngFor="let authority of authorities">
       <ion-card-header>
         <ion-card-title text-wrap>{{authority.name}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-list text-wrap>
-          <ion-item *ngIf="authority.description">
+        <button *ngIf="isCollapsed" class="btn btn-primary pull-right margin-bottom-small" type="button" (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-controls="collapseExample">
+          Mehr...
+        </button>
+        <ul class="list-group" text-wrap [collapse]="isCollapsed">
+          <li class="list-group-item" *ngIf="authority.description">
             {{authority.description}}
-          </ion-item>
-          <ion-item *ngIf="authority.phoneNumber">
+          </li>
+          <li class="list-group-item" *ngIf="authority.phoneNumber">
               {{authority.phoneNumber}}
-            </ion-item>
-            <ion-item *ngIf="authority.mail">
+          </li>
+            <li class="list-group-item" *ngIf="authority.mail">
                 {{authority.mail}}
-              </ion-item>
-            <ion-item *ngIf="authority.street || authority.city">
+            </li>
+            <li class="list-group-item" *ngIf="authority.street || authority.city">
                 {{authority.street}} {{authority.zip}}, {{authority.city}}
-              </ion-item>
-        </ion-list>
+            </li>
+            </ul>
+            <button *ngIf="!isCollapsed" class="btn btn-primary pull-right margin-bottom-small" type="button" (click)="isCollapsed = !isCollapsed" aria-expanded="false" aria-controls="collapseExample">
+                Weniger...
+            </button>
       </ion-card-content>
       </ion-card>
 </ion-content>
