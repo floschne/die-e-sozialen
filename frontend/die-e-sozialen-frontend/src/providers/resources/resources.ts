@@ -30,4 +30,8 @@ export class ResourcesProvider {
   public getAuthorities(): Observable<any> {
     return this.httpClient.get("/getAuthorities");
   }
+
+  public postOffer(offer: any): Observable<any> {
+    return this.httpClient.post("/offerHelp", offer);
+  }
 }

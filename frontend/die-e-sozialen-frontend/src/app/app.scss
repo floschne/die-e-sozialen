@@ -54,5 +54,20 @@ ion-spinner * {
 
 ion-card-title {
     word-wrap: break-word;
-}
 
+  ion-item * {
+    white-space: normal;
+    float: left;
+    width: inherit;
+    height: auto;
+    word-wrap: break-word;
+  }
+
+  .panel-heading {
+    text-align: center;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+}

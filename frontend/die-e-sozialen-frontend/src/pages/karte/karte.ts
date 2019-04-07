@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, List } from 'ionic-angular';
 import { Map, latLng, tileLayer, Layer, Marker, Icon, Circle, Polygon, LatLng } from 'leaflet';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +21,8 @@ export class KartePage {
   map: Map;
   maxzoom: 18;
   places: JSON;
+  medMarkers: Array<Marker>;
+  bedMarkers: Array<Marker>;
 
   public form = [
     { val: 'Medizinische Versorgung', isChecked: false },
@@ -34,8 +36,10 @@ export class KartePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad KartePage');
+    this.initializeMap(); 
+    this.medMarkers = [];
+    this.bedMarkers = [];
 
-    this.initializeMap();
   }
 
   initializeMap() {
@@ -77,6 +81,14 @@ export class KartePage {
     var marker = new Marker(coords, {icon: markerIcon}).addTo(this.map);
     marker.bindPopup(popuptext);
 
+    if(type == "med") {
+      console.log("BIN HIER")
+      this.medMarkers.push(marker);
+    }
+    if(type == "bed") {
+      this.bedMarkers.push(marker)
+    }
+
     if (popup) {
       marker.openPopup();  
     }
@@ -105,6 +117,12 @@ export class KartePage {
         }
         
       })
+    }
+    if (!this.form[0].isChecked) {
+      this.medMarkers.forEach(element => {
+        this.map.removeLayer(element);
+      });
+      this.medMarkers = [];
     }
 
     if (this.form[1].isChecked) {
