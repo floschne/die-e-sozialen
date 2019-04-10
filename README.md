@@ -32,3 +32,9 @@ cd backend && mvn clean install
 ```
 cd frontend && npm install && ionic serve
 ```
+## To Do
+
+1. Make crypto usable (?)
+2. Add a QR-code to be scanned for key-exchange
+3. UI improvements
+4. Social Feature / add Help Portal on interactive map
