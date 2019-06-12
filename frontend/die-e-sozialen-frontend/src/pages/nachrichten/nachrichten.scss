@@ -87,3 +87,17 @@ page-nachrichten {
         width: 100%;
       }
 }
+
+.nachrichten-class {
+  color: black; 
+  text-align: left;
+  white-space: normal;
+  float: left;
+  width: inherit;
+  height: auto;
+  word-wrap: break-word;
+}
+
+.nachrichten-meta {
+  font-weight: bold;
+}

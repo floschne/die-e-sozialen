@@ -60,7 +60,6 @@ public class MainController {
         return new PlainStringResponse("Hello world!");
     }
 
-
     /**
      * @param name the name as a string
      * @return A shoutout to the given name

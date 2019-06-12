@@ -11,9 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ResourcesProvider {
 
-  constructor(public httpClient: HttpClient) {
-    console.log('ResourcesProvider is here!');
-  }
+  constructor(public httpClient: HttpClient) { }
 
   public getHelloWorld(): Observable<any> {
     return this.httpClient.get("/helloWorld");

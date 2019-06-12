@@ -34,7 +34,20 @@ cd frontend && npm install && ionic serve
 ```
 ## To Do
 
-1. Make crypto usable (?)
+1. Make crypto usable
 2. Add a QR-code to be scanned for key-exchange
-3. UI improvements
 4. Social Feature / add Help Portal on interactive map
+5. Create splash-screen image 
+6. Add Hilfe bieten delete button (delete offer from db with offer-id given by user)
+7. Make project ready to compile to iOS and Android (some version conflicts prevent that)
+8. All together, please clean up the code you were working on
+
+## Done
+
+3. UI improvements
+- Edit dev-server config to use full cardova while development. 
+- Add back button and fix init logic for hilfe anbieten modal in hilfe-bieten.ts
+- Hilfe anbieten modal styling
+- Message reader modal styling
+- Fix message loading issues in nachrichten.ts 
+- Add splashScreen animation on startup instead of showing a modal (only shows up in iOS and Android, not in Browser)

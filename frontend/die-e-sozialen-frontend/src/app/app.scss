@@ -24,11 +24,6 @@ ion-title {
 .mapselect {float: left;}
 .verticallist {display: flex; flex-direction: row}
 
-// ion-spinner {
-//     
-//     align-self: center;
-// }
-
 .spinnerCenter {
     display: flex;
     flex-direction: row;
@@ -57,19 +52,5 @@ ion-card-title {
 
   .panel-heading {
     text-align: center;
-  }
-
-  .nachrichten-class {
-    color: black; 
-    text-align: left;
-    white-space: normal;
-    float: left;
-    width: inherit;
-    height: auto;
-    word-wrap: break-word;
-  }
-
-  .messages-class {
-    color: grey;
   }
 }

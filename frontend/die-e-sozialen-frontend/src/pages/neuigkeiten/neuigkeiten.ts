@@ -20,11 +20,11 @@ export class NeuigkeitenPage {
 
   loggedIn: boolean = false;
   messages: JSON;
-  
+
   constructor(
     //private fileEncryption: FileEncryption, 
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public httpClient: HttpClient,
     public modalCtrl: ModalController,
     public authProvider: AuthProvider) {
@@ -34,15 +34,12 @@ export class NeuigkeitenPage {
   ionViewDidLoad() {
     var resources = new ResourcesProvider(this.httpClient);
     resources.getMessages().subscribe(response => {
-      console.log(response)
       this.messages = response;
     })
   }
 
   openModal(message) {
-
-    console.log(message);
-    let modal = this.modalCtrl.create(ModalContentPage, {message: message});
+    let modal = this.modalCtrl.create(ModalContentPage, { message: message });
     modal.present();
   }
 
@@ -65,14 +62,9 @@ export class ModalContentPage {
 
   constructor(
     public platform: Platform,
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public viewCtrl: ViewController,
     public httpClient: HttpClient
-  ) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NeuigkeitenPage');
-  }
+  ) { }
 }

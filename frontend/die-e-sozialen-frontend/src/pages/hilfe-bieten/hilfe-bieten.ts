@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform, ViewController, ModalController, Form} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Platform, ViewController, ModalController} from 'ionic-angular';
 import {ResourcesProvider} from "../../providers/resources/resources";
-import {HttpClient} from "@angular/common/http";
 
 /**
  * Generated class for the HilfeBietenPage page.
@@ -60,9 +59,7 @@ export class HilfeAnbietenModal {
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    public resources: ResourcesProvider) {
-
-  }
+    public resources: ResourcesProvider) { }
 
   processForm(value: any) {
     let offer = {

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, List } from 'ionic-angular';
-import { Map, latLng, tileLayer, Layer, Marker, Icon, Circle, Polygon, LatLng } from 'leaflet';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Map, tileLayer, Layer, Marker, Icon, LatLng } from 'leaflet';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 
@@ -36,7 +36,6 @@ export class KartePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad KartePage');
     this.initializeMap();
     this.medMarkers = [];
     this.bedMarkers = [];
@@ -57,9 +56,8 @@ export class KartePage {
     if (!location) {
       this.setMarker('loc', this.map.getCenter(), true, 'Ihr Standort')
     }
-    var lat = this.map.getCenter().lat;
-    var lng = this.map.getCenter().lng;
-    //console.log(proj4('EPSG:25832', 'GOOGLE', [lat, lng]));
+    // var lat = this.map.getCenter().lat;
+    // var lng = this.map.getCenter().lng;
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       // tslint:disable-next-line
@@ -99,14 +97,13 @@ export class KartePage {
   }
 
   selectChange() {
-    console.log("Geklickt")
     var resources = new ResourcesProvider(this.httpClient);
     if (this.form[0].isChecked) {
       resources.getMapContent("hospital").subscribe(response => {
             
         for (let place of response) {
-          console.log(place.name);
-          console.log(place.geom.point.coordinates.latitude);
+          // console.log(place.name);
+          // console.log(place.geom.point.coordinates.latitude);
 
           let popupText = place.name + '<br>' + 
                           "Notfallhilfe: " + place.extra1 + '<br>' +
@@ -132,8 +129,8 @@ export class KartePage {
       resources.getMapContent("shelter").subscribe(response => {
             
         for (let place of response) {
-          console.log(place.name);
-          console.log(place.geom.point.coordinates.latitude);
+          // console.log(place.name);
+          // console.log(place.geom.point.coordinates.latitude);
 
           let popupText = place.name + '<br>' + 
                           "Organisation: " + place.extra1 + '<br>' +

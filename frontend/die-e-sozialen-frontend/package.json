@@ -30,6 +30,8 @@
     "@types/leaflet": "^1.4.3",
     "@types/openpgp": "^4.4.3",
     "cordova-clipboard": "1.2.1",
+    "cordova-ios": "5.0.1",
+    "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-safe": "2.0.1",
     "ionic-angular": "3.9.3",
     "ionicons": "3.0.0",
@@ -41,6 +43,11 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "^3.2.1",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-ionic-keyboard": "^2.1.3",
+    "cordova-plugin-ionic-webview": "^3.1.2",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-whitelist": "^1.3.3",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
@@ -48,7 +55,15 @@
     "plugins": {
       "cordova-safe": {},
       "cordova-clipboard": {},
-      "cordova-plugin-splashscreen": {}
-    }
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "ios"
+    ]
   }
 }

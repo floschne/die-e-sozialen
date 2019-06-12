@@ -5,6 +5,9 @@ import org.dieesozialen.entity.OfferedHelp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import net.bytebuddy.asm.Advice.Return;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service

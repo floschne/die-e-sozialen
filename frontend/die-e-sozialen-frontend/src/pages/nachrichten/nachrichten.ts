@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Loading, Modal, Form } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Form } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { AuthProvider } from '../../providers/auth/auth';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 // /**
 //  * Generated class for the NeuigkeitenPage page.
@@ -38,7 +36,6 @@ export class NachrichtenPage {
     var resources = new ResourcesProvider(this.httpClient);
     resources.getMessages().subscribe(response => {
       this.messages = response;
-      console.log(response);
     })
   }
 
@@ -48,8 +45,6 @@ export class NachrichtenPage {
   }
 
   login(form: Form) {
-
-    console.log(form);
     this.loginInProcess = true;
 
     setTimeout( () => {
