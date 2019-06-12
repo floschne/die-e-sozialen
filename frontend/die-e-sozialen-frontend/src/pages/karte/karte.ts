@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Map, tileLayer, Layer, Marker, Icon, LatLng } from 'leaflet';
+import { Map, tileLayer, Marker, Icon, LatLng } from 'leaflet';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 

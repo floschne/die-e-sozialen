@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { KartePage } from './karte';
-import { ResourcesProvider } from '../../providers/resources/resources';
 
 @NgModule({
   declarations: [
@@ -11,5 +10,4 @@ import { ResourcesProvider } from '../../providers/resources/resources';
     IonicPageModule.forChild(KartePage),
   ],
 })
-export class KartePageModule {
-}
+export class KartePageModule { }

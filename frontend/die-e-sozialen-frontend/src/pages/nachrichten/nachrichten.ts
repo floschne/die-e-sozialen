@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, Form } from 'ionic-angular';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
-import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { AuthProvider } from '../../providers/auth/auth';
 
 // /**
@@ -24,8 +23,8 @@ export class NachrichtenPage {
 
   messages: JSON;
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public httpClient: HttpClient,
     public modalCtrl: ModalController,
     public authProvider: AuthProvider) {
@@ -40,14 +39,14 @@ export class NachrichtenPage {
   }
 
   openModal(message) {
-    let modal = this.modalCtrl.create(ModalContentPage, {message: message});
+    let modal = this.modalCtrl.create(ModalContentPage, { message: message });
     modal.present();
   }
 
   login(form: Form) {
     this.loginInProcess = true;
 
-    setTimeout( () => {
+    setTimeout(() => {
       this.loginInProcess = false;
       this.authProvider.login('testUser');
     }, 5000);
@@ -67,20 +66,16 @@ export class ModalContentPage {
   loading: boolean = false;
 
   constructor(
-    private fileEncryption: FileEncryption,
     public platform: Platform,
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public viewCtrl: ViewController,
     public httpClient: HttpClient
-  ) 
-  {}
-
-  
+  ) { }
 
   ionViewDidLoad() {
     this.message = this.navParams.get('message');
-}
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();
