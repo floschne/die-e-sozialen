@@ -45,6 +45,14 @@ export class HilfeBietenPage {
       this.fetchOffers();
     });
   }
+
+  openHilfeLoeschenModal() {
+    let modal = this.modalCtr.create(HilfeLoeschenModal);
+    modal.present();
+    modal.onDidDismiss(() => {
+      this.fetchOffers();
+    });
+  }
 }
 
 @Component({
@@ -82,6 +90,32 @@ export class HilfeAnbietenModal {
 
     this.resources.postOffer(offer).subscribe(res => {
       this.offerID = res;
+      this.success = true;
+    });
+  }
+
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
+}
+
+@Component({
+  templateUrl: 'hilfe-loeschen-modal.html'
+})
+export class HilfeLoeschenModal {
+  success: boolean = false;
+
+  constructor(
+    public platform: Platform,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public resources: ResourcesProvider) { }
+
+  processForm(value: any) {
+    let id = value.offerID;
+
+    this.resources.deleteOffer(id).subscribe(() => {
       this.success = true;
     });
   }

@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { AuthProvider } from '../providers/auth/auth';
 import { NachrichtenPage, ModalContentPage } from '../pages/nachrichten/nachrichten';
-import { HilfeBietenPage, HilfeAnbietenModal } from "../pages/hilfe-bieten/hilfe-bieten";
+import { HilfeBietenPage, HilfeAnbietenModal, HilfeLoeschenModal } from "../pages/hilfe-bieten/hilfe-bieten";
 import { CollapseModule } from '../pages/collapse';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
@@ -31,6 +31,7 @@ import { Splash } from '../pages/splash/splash'
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,
+    HilfeLoeschenModal,
     Splash
   ],
   imports: [
@@ -51,6 +52,7 @@ import { Splash } from '../pages/splash/splash'
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,
+    HilfeLoeschenModal,
     Splash
   ],
   providers: [

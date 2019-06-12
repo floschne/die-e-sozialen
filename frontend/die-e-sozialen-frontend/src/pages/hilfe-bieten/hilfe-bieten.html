@@ -12,9 +12,15 @@
 
 <ion-content padding>
 
-  <ion-fab class="fab-pos" slot="fixed">
+  <ion-fab class="fab-pos-add" slot="fixed">
     <button ion-fab type="button" (click)="openHilfeAnbietenModal()">
       <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab class="fab-pos-remove" slot="fixed">
+    <button ion-fab type="button" class="btn-danger" (click)="openHilfeLoeschenModal()">
+      <ion-icon name="trash"></ion-icon>
     </button>
   </ion-fab>
 

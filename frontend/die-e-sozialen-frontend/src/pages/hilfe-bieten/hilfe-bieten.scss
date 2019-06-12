@@ -21,10 +21,16 @@ page-hilfe-bieten {
     background: #488aff !important;
   }
 
-  .fab-pos {
+  .fab-pos-add {
     position: fixed;
     bottom: 70px;
     right: 10px;
+  }
+
+  .fab-pos-remove {
+    position: fixed;
+    bottom: 70px;
+    right: 70px;
   }
 
   .phil-button-container {

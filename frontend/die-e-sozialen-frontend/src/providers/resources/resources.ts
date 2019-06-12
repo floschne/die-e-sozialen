@@ -33,6 +33,10 @@ export class ResourcesProvider {
     return this.httpClient.post("/offerHelp", offer);
   }
 
+  public deleteOffer(offerID: any): Observable<any> {
+    return this.httpClient.delete("/deleteHelp/" + offerID);
+  }
+
   public getHelp(): Observable<any> {
     return this.httpClient.get("/getHelp");
   }

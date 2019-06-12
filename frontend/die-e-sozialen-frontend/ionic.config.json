@@ -36,6 +36,10 @@
       "proxyUrl": "http://localhost:8080/offerHelp"
     },
     {
+      "path": "/deleteHelp",
+      "proxyUrl": "http://localhost:8080/deleteHelp"
+    },
+    {
       "path": "/getHelp",
       "proxyUrl": "http://localhost:8080/getHelp"
     }
