@@ -75,7 +75,7 @@ export class HilfeAnbietenModal {
       "description": value.description,
       "offerer": {
         "address": {
-          "city": value.description,
+          "city": value.city,
           "mail": value.mail,
           "phoneNumber": value.phoneNumber,
           "street": value.street,
