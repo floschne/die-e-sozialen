@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Map, tileLayer, Marker, Icon, LatLng } from 'leaflet';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { ResourcesProvider } from '../../providers/resources/resources';
 import { HttpClient } from '@angular/common/http';
 
@@ -24,10 +25,13 @@ export class KartePage {
   location: boolean;
   medMarkers: Array<Marker>;
   bedMarkers: Array<Marker>;
+  helpMarkers: Array<Marker>;
+  provider = new OpenStreetMapProvider();
 
   public form = [
     { val: 'Med. Versorgung', isChecked: false },
-    { val: 'Notunterkünfte', isChecked: false }
+    { val: 'Notunterkünfte', isChecked: false },
+    { val: 'Hilfestellung', isChecked: false }
   ];
 
   constructor(public navCtrl: NavController, 
@@ -39,6 +43,7 @@ export class KartePage {
     this.initializeMap();
     this.medMarkers = [];
     this.bedMarkers = [];
+    this.helpMarkers = [];
     this.location = false;
 
   }
@@ -70,7 +75,8 @@ export class KartePage {
     const iconDict: {[icon: string]: string} = {
       loc: '../assets/imgs/marker.png',
       med: '../assets/imgs/hospital.png',
-      bed: '../assets/imgs/shelter.png'
+      bed: '../assets/imgs/shelter.png',
+      help: '../assets/imgs/help.png'
     }
 
     var markerIcon = new Icon({
@@ -89,11 +95,25 @@ export class KartePage {
     if(type == "bed") {
       this.bedMarkers.push(marker)
     }
+    if(type == "help") {
+      this.helpMarkers.push(marker)
+    }
 
 
     if (popup) {
       marker.openPopup();  
     }
+  }
+
+  async geoCodeAddress(street, zip, city, popupText) {
+
+    var queryaddress = street + " " + zip + " " + city;
+    const results = await this.provider.search({ query: queryaddress }); 
+    console.debug(+results[0].y);
+    console.debug(+results[0].x);
+    var tup = [+results[0].y, +results[0].x];
+
+    this.setMarker("help", new LatLng(tup[0], tup[1]), false, popupText);    
   }
 
   selectChange() {
@@ -145,11 +165,36 @@ export class KartePage {
         
       })
     }
-    if (!this.form[0].isChecked) {
+    if (!this.form[1].isChecked) {
       this.bedMarkers.forEach(element => {
         this.map.removeLayer(element);
       });
       this.bedMarkers = [];
+    }
+
+    if (this.form[2].isChecked) {
+      resources.getMapContent("help").subscribe(response => {
+            
+        for (let place of response) {
+          // console.log(place.name);
+          // console.log(place.geom.point.coordinates.latitude);
+
+          let popupText = place.titel + '<br>' + 
+                          "Name: " + place.offerer + '<br>' +
+                          "Beschreibung: " + place.description + '<br>' +
+                          "Verfügbarkeit" + place.period;
+
+          this.geoCodeAddress(place.strasse, place.plz, place.ort, popupText);         
+
+        }
+        
+      })
+    }
+    if (!this.form[2].isChecked) {
+      this.helpMarkers.forEach(element => {
+        this.map.removeLayer(element);
+      });
+      this.helpMarkers = [];
     }
 
   }

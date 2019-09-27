@@ -34,14 +34,15 @@ cd frontend && npm install && ionic serve
 ```
 ## To Do
 
-1. Make crypto usable
 2. Add a QR-code to be scanned for key-exchange
 4. Social Feature / add Help Portal on interactive map
-5. Create splash-screen image 
-7. Make project ready to compile to iOS and Android (some version conflicts prevent that)
-8. All together, please clean up the code you were working on
+5. Create splash-screen image -> Florian 
+7. Make project ready to compile to iOS and Android (some version conflicts prevent that) -> Phil 
+8. All together, please clean up the code you were working on -> All
 
 ## Done
+1. Make crypto usable
+
 6. Add Hilfe bieten delete button (delete offer from db with offer-id given by user)
 
 3. UI improvements

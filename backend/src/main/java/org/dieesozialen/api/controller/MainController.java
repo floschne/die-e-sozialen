@@ -87,7 +87,7 @@ public class MainController {
      */
     @RequestMapping(value = "/getMapContent", method = RequestMethod.GET, produces = "application/json")
     public List<MapInformationInterface> getMapContent(@RequestParam("type") String paramType) throws IOException, XMLStreamException {
-        List<MapInformationInterface> info = this.mapApi.getMapInformation(paramType);
+        List<MapInformationInterface> info = this.mapApi.getMapInformation(paramType, this.offerHelpService);
         return info;
     }
 
