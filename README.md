@@ -55,7 +55,6 @@ cd frontend && npm install && ionic serve
 - Fix message loading issues in nachrichten.ts 
 - Add splashScreen animation on startup instead of showing a modal (only shows up in iOS and Android, not in Browser)
 
-1. Make crypto usable ()
 # Crypto Info:
 - openpgp is scheiße!
 - momentan funktioniert:
