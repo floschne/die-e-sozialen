@@ -90,6 +90,11 @@ export class NachrichtenPage {
     modal.present();
   }
 
+  openQRModal() {
+    let modal = this.modalCtrl.create(ModalContentQRPage, { });
+    modal.present();
+  }
+
   login(form: Form) {
     this.loginInProcess = true;
 
@@ -219,6 +224,32 @@ export class ModalContentPage {
   ionViewDidLoad() {
 
     this.message = this.navParams.get('message');
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+}
+
+@Component({
+  templateUrl: 'modal-contentQR.html'
+})
+export class ModalContentQRPage {
+  createdQRCode: string;
+  loading: boolean = true;
+
+  constructor(
+    public platform: Platform,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public httpClient: HttpClient,
+    private storage: Storage
+  ) { }
+
+  async ionViewDidLoad() {
+    this.createdQRCode = await this.storage.get('pupkey').then((val) => {return val});
+    this.loading = false;
   }
 
   dismiss() {

@@ -12,13 +12,15 @@ import { ResourcesProvider } from '../providers/resources/resources';
 import { HttpClientModule } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { AuthProvider } from '../providers/auth/auth';
-import { NachrichtenPage, ModalContentPage } from '../pages/nachrichten/nachrichten';
+import { NachrichtenPage, ModalContentPage, ModalContentQRPage } from '../pages/nachrichten/nachrichten';
 import { HilfeBietenPage, HilfeAnbietenModal, HilfeLoeschenModal } from "../pages/hilfe-bieten/hilfe-bieten";
 import { CollapseModule } from '../pages/collapse';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { Splash } from '../pages/splash/splash'
 import { IonicStorageModule } from '@ionic/storage';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { IonicStorageModule } from '@ionic/storage';
     InformationenPage,
     KartePage,
     ModalContentPage,
+    ModalContentQRPage,
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,
@@ -42,6 +45,7 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserAnimationsModule,
     CollapseModule,
     HttpClientModule,
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,6 +55,7 @@ import { IonicStorageModule } from '@ionic/storage';
     KartePage,
     InformationenPage,
     ModalContentPage,
+    ModalContentQRPage,
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,
