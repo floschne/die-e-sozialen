@@ -2,9 +2,12 @@ package org.dieesozialen.service;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
+
+import org.dieesozialen.entity.MapInformationHelp;
 import org.dieesozialen.entity.MapInformationHospital;
 import org.dieesozialen.entity.MapInformationInterface;
 import org.dieesozialen.entity.MapInformationShelter;
+import org.dieesozialen.entity.OfferedHelp;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -30,7 +33,7 @@ public class MapApi {
         this.restTemplate = new RestTemplate();
     }
 
-    public List<MapInformationInterface> getMapInformation(String type) throws IOException, XMLStreamException {
+    public List<MapInformationInterface> getMapInformation(String type, OfferHelpService help) throws IOException, XMLStreamException {
         List<MapInformationInterface> infoList = new ArrayList<MapInformationInterface>();
         if(type.equals("hospital")){
             XMLInputFactory f = XMLInputFactory.newFactory();
@@ -65,6 +68,24 @@ public class MapApi {
                 }
             }
             sr.close();
+        }        
+        else if (type.equals("help")){
+            
+            List<OfferedHelp> helplist = help.getHelp();
+             
+            for(OfferedHelp elem : helplist){
+               
+                MapInformationHelp info = new MapInformationHelp();
+                info.setId(elem.getId());
+                info.setTitel(elem.getTitle());
+                info.setDescription(elem.getDescription());
+                info.setPeriod(elem.getPeriod());
+                info.setOfferer(elem.getOfferer().getForename() + " " + elem.getOfferer().getSurname());
+                info.setStrasse(elem.getOfferer().getAddress().getStreet());
+                info.setPlz(elem.getOfferer().getAddress().getZip());
+                info.setOrt(elem.getOfferer().getAddress().getCity());
+                infoList.add(info);      
+            }
         }
         else{
             MapInformationHospital info = new MapInformationHospital();
