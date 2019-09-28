@@ -64,4 +64,4 @@ cd frontend && npm install && ionic serve
   4. senden
   5. mail sollte nach etwas zeit in der app auftauchen und entschlüsselt angezeigt werden.
 - Alles was nicht mit dem local Key entschlüsselt werden kann wird plain angezeigt.
-- 
+- (Die localen keys werden in der Console gelogt, damit ihr die easy benutzen könnt zum testen)
