@@ -18,6 +18,7 @@ import { CollapseModule } from '../pages/collapse';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { Splash } from '../pages/splash/splash'
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { Splash } from '../pages/splash/splash'
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     BrowserAnimationsModule,
     CollapseModule,
     HttpClientModule,

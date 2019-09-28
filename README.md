@@ -32,14 +32,15 @@ cd backend && mvn clean install
 ```
 cd frontend && npm install && ionic serve
 ```
+
+
 ## To Do
 
-1. Make crypto usable
 2. Add a QR-code to be scanned for key-exchange
-4. Social Feature / add Help Portal on interactive map
-5. Create splash-screen image 
-7. Make project ready to compile to iOS and Android (some version conflicts prevent that)
-8. All together, please clean up the code you were working on
+3. Social Feature / add Help Portal on interactive map
+4. Create splash-screen image 
+5. Make project ready to compile to iOS and Android (some version conflicts prevent that)
+6. All together, please clean up the code you were working on
 
 ## Done
 6. Add Hilfe bieten delete button (delete offer from db with offer-id given by user)
@@ -51,3 +52,15 @@ cd frontend && npm install && ionic serve
 - Message reader modal styling
 - Fix message loading issues in nachrichten.ts 
 - Add splashScreen animation on startup instead of showing a modal (only shows up in iOS and Android, not in Browser)
+
+1. Make crypto usable ()
+# Crypto Info:
+- openpgp is scheiße!
+- momentan funktioniert:
+  1. einen Text nehmen, mit dem localen pub Key (wird generiert und im local storage abgelegt fals noch keiner vorhanden) verschlüsseln z.B. auf https://sela.io/pgp/de/
+  2. Den Text in eine Mail c&p 
+  3. Bei der Mail bei optionen-> deliver format-> plain/text only (ohne das hat es bei mir nicht geklappt)
+  4. senden
+  5. mail sollte nach etwas zeit in der app auftauchen und entschlüsselt angezeigt werden.
+- Alles was nicht mit dem local Key entschlüsselt werden kann wird plain angezeigt.
+- 

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "emitDecoratorMetadata": true,
@@ -23,6 +24,9 @@
   ],
   "compileOnSave": false,
   "atom": {
-    "rewriteTsconfig": false
+    "rewriteTsconfig": false,
+  "typeRoots": [
+      "node_modules/@types"
+    ]
   }
 }
