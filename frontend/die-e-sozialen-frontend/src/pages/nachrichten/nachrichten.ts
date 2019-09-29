@@ -44,6 +44,8 @@ export class NachrichtenPage {
     privkey = await this.storage.get('privkey').then((val) => {return val});
     pass = await this.storage.get('password').then((val) => {return val});
 
+    console.log(pubkey);
+
     if (!pubkey || !privkey || !pass){
       console.log('no credentials found -> generating new ones!')
 

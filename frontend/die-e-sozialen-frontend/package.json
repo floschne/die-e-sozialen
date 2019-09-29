@@ -28,7 +28,7 @@
     "@ionic-native/status-bar": "~4.18.0",
     "@ionic/storage": "2.2.0",
     "@types/leaflet": "^1.4.3",
-    "@types/openpgp": "^4.4.3",
+    "@types/openpgp": "^4.4.6",
     "all": "0.0.0",
     "cordova-android": "8.1.0",
     "cordova-clipboard": "1.2.1",
@@ -41,7 +41,7 @@
     "leaflet-geosearch": "^2.7.0",
     "ngx-bootstrap": "^4.0.0",
     "ngx-qrcode2": "0.0.9",
-    "openpgp": "^2.6.2",
+    "openpgp": "^4.6.2",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29"
