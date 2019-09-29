@@ -20,6 +20,7 @@ import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePart;
 import com.google.api.services.gmail.model.MessagePartHeader;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MimeType;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -109,6 +110,9 @@ public class GMailService {
                         }
 
                     // build Message Body as a Plain Text
+                    System.out.println(payload.getMimeType());
+                    System.out.println(payload.getBody());
+                    System.out.println("---");
                     if (payload.getParts() != null) {
                         StringBuilder sb = new StringBuilder();
                         for (MessagePart msgPart : payload.getParts())
@@ -116,7 +120,10 @@ public class GMailService {
                                 sb.append(new String(Base64.decodeBase64(msgPart.getBody().getData())));
                         msg.setContent(sb.toString());
                     } else
-                        msg.setContent(my.getSnippet());
+                        //msg.setContent(my.getSnippet());
+                        // for some messages the header is text/plain
+                        if (payload.getMimeType().equals("text/plain"))
+                            msg.setContent(new String(Base64.decodeBase64(payload.getBody().getData())));
 
                     results.add(msg);
                 }

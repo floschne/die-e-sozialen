@@ -12,7 +12,7 @@ import { ResourcesProvider } from '../providers/resources/resources';
 import { HttpClientModule } from '@angular/common/http';
 import { FileEncryption } from '@ionic-native/file-encryption/ngx';
 import { AuthProvider } from '../providers/auth/auth';
-import { NachrichtenPage, ModalContentPage } from '../pages/nachrichten/nachrichten';
+import { NachrichtenPage, ModalContentPage, ModalContentQRPage } from '../pages/nachrichten/nachrichten';
 import { HilfeBietenPage, HilfeAnbietenModal, HilfeLoeschenModal } from "../pages/hilfe-bieten/hilfe-bieten";
 import { CollapseModule } from '../pages/collapse';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,9 @@ import { InformationenPageModule } from '../pages/informationen/informationen.mo
 import { KartePageModule } from '../pages/karte/karte.module';
 import { NachrichtenPageModule } from '../pages/nachrichten/nachrichten.module';
 import { NeuigkeitenPageModule } from '../pages/neuigkeiten/neuigkeiten.module';
+import { IonicStorageModule } from '@ionic/storage';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+
 
 
 @NgModule({
@@ -36,6 +39,7 @@ import { NeuigkeitenPageModule } from '../pages/neuigkeiten/neuigkeiten.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     BrowserAnimationsModule,
     CollapseModule,
     HttpClientModule,
@@ -44,6 +48,7 @@ import { NeuigkeitenPageModule } from '../pages/neuigkeiten/neuigkeiten.module';
     KartePageModule,
     NachrichtenPageModule,
     NeuigkeitenPageModule
+    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,6 +58,7 @@ import { NeuigkeitenPageModule } from '../pages/neuigkeiten/neuigkeiten.module';
     KartePage,
     InformationenPage,
     ModalContentPage,
+    ModalContentQRPage,
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,
