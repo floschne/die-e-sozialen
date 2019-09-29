@@ -18,18 +18,17 @@ import { CollapseModule } from '../pages/collapse';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { Splash } from '../pages/splash/splash'
+import { HilfeBietenPageModule } from '../pages/hilfe-bieten/hilfe-bieten.module';
+import { InformationenPageModule } from '../pages/informationen/informationen.module';
+import { KartePageModule } from '../pages/karte/karte.module';
+import { NachrichtenPageModule } from '../pages/nachrichten/nachrichten.module';
+import { NeuigkeitenPageModule } from '../pages/neuigkeiten/neuigkeiten.module';
 
 
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
-    NeuigkeitenPage,
-    InformationenPage,
-    KartePage,
-    ModalContentPage,
-    NachrichtenPage,
-    HilfeBietenPage,
     HilfeAnbietenModal,
     HilfeLoeschenModal,
     Splash
@@ -40,6 +39,11 @@ import { Splash } from '../pages/splash/splash'
     BrowserAnimationsModule,
     CollapseModule,
     HttpClientModule,
+    HilfeBietenPageModule,
+    InformationenPageModule,
+    KartePageModule,
+    NachrichtenPageModule,
+    NeuigkeitenPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -24,7 +24,7 @@
         <button *ngIf="isCollapsed[i]" class="btn btn-primary pull-right margin-bottom-small" type="button" (click)="isCollapsed[i] = !isCollapsed[i]" aria-expanded="false" aria-controls="collapseExample">
           Mehr...
         </button>
-        <ul class="list-group" text-wrap [collapse]="isCollapsed[i]">
+        <ul class="list-group" text-wrap collapse="isCollapsed[i]">
           <li class="list-group-item" *ngIf="authority.description">
             {{authority.description}}
           </li>

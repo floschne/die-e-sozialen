@@ -55,6 +55,7 @@ export class NeuigkeitenPage {
 @Component({
   templateUrl: 'modal-content.html'
 })
+
 export class ModalContentPage {
   message = {};
   messages: JSON;
