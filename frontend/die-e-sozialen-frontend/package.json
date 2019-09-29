@@ -41,7 +41,7 @@
     "leaflet-geosearch": "^2.7.0",
     "ngx-bootstrap": "^4.0.0",
     "ngx-qrcode2": "0.0.9",
-    "openpgp": "^2.6.2",
+    "openpgp": "^4.3.0",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29"
