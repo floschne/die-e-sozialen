@@ -131,7 +131,7 @@ export class NachrichtenPage {
       var options = {
         message: await openpgp.message.readArmored(encryptedMessage),
         publicKeys: (await openpgp.key.readArmored(pubKey)).keys,
-        privateKey: privkeyObj
+        privateKeys: [privkeyObj]
       }
 
       return openpgp.decrypt(options).then(plaintext => {
@@ -145,7 +145,7 @@ export class NachrichtenPage {
       console.log(error);
     }
     
-    return encryptedMessage
+    return encryptedMessage;
   }; 
   
   async encryptMessage(privKey: string, pubKey: string, message: string, pass: string) {
