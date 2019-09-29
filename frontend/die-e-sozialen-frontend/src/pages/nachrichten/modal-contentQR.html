@@ -18,6 +18,7 @@
     </ion-content>
   </div>
   <div class="nachrichten-class" *ngIf="!loading">
-          <ngx-qrcode qrc-version = 40 qrc-errorCorrectionLevel = "M" qrc-class = "test-class" [qrc-element-type]="'img'" [qrc-value] = "createdQRCode"></ngx-qrcode>
+    <ngx-qrcode qrc-version=40 qrc-errorCorrectionLevel="M" qrc-class="test-class" [qrc-element-type]="'img'"
+      [qrc-value]="createdQRCode"></ngx-qrcode>
   </div>
 </ion-content>

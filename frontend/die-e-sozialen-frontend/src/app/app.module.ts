@@ -38,6 +38,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
   ],
   imports: [
     BrowserModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     BrowserAnimationsModule,
@@ -48,17 +49,16 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     KartePageModule,
     NachrichtenPageModule,
     NeuigkeitenPageModule
-    NgxQRCodeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     TabsPage,
+    ModalContentQRPage,
     NeuigkeitenPage,
     KartePage,
     InformationenPage,
     ModalContentPage,
-    ModalContentQRPage,
     NachrichtenPage,
     HilfeBietenPage,
     HilfeAnbietenModal,

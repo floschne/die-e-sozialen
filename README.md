@@ -38,15 +38,12 @@ cd frontend && npm install && ionic serve
 
 4. Social Feature / add Help Portal on interactive map
 5. Create splash-screen image -> Florian 
-7. Make project ready to compile to iOS and Android (some version conflicts prevent that) -> Phil 
 8. All together, please clean up the code you were working on -> All
 
 ## Done
 1. Make crypto usable
-2. Add a QR-code to be scanned for key-exchange
-
 3. Add Hilfe bieten delete button (delete offer from db with offer-id given by user)
-
+2. Add a QR-code to be scanned for key-exchange
 4. UI improvements
 - Edit dev-server config to use full cardova while development. 
 - Add back button and fix init logic for hilfe anbieten modal in hilfe-bieten.ts
@@ -54,6 +51,7 @@ cd frontend && npm install && ionic serve
 - Message reader modal styling
 - Fix message loading issues in nachrichten.ts 
 - Add splashScreen animation on startup instead of showing a modal (only shows up in iOS and Android, not in Browser)
+7. Make project ready to compile to iOS and Android (some version conflicts prevent that) -> Phil 
 
 # Crypto Info:
 - openpgp is scheiße!

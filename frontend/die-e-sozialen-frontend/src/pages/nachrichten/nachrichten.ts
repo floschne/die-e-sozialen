@@ -44,10 +44,6 @@ export class NachrichtenPage {
     privkey = await this.storage.get('privkey').then((val) => {return val});
     pass = await this.storage.get('password').then((val) => {return val});
 
-    console.log(privkey);
-    console.log(pubkey);
-    console.log(pass);
-
     if (!pubkey || !privkey || !pass){
       console.log('no credentials found -> generating new ones!')
 
@@ -163,7 +159,7 @@ export class NachrichtenPage {
 
     return openpgp.encrypt(options).then(ciphertext => {
       return ciphertext.data;
-  }).catch(err => console.log(err));
+    }).catch(err => console.log(err));
 
     /* const options = {
       message: openpgp.message.fromText(message), 

@@ -29,6 +29,7 @@
     "@ionic/storage": "2.2.0",
     "@types/leaflet": "^1.4.3",
     "@types/openpgp": "^4.4.3",
+    "all": "0.0.0",
     "cordova-android": "8.1.0",
     "cordova-clipboard": "1.2.1",
     "cordova-ios": "5.0.1",
